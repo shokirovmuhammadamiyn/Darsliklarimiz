@@ -2,256 +2,1000 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qur'on Vazifalari & Ramazon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Qur'on Vazifalari & Ramazon Rejasi</title>
   <style>
     :root {
-      --primary: #1b4332;
+      --primary: #0d3b2e;
+      --primary-light: #165b47;
       --accent: #d4af37;
-      --bg: #f8f9fa;
+      --accent-hover: #b89324;
+      --accent-bg: #fdf8eb;
+      --bg: #f3f6f4;
       --card: #ffffff;
-      --text: #212529;
+      --text: #1a2621;
+      --muted: #62776d;
+      --border: #dce5e0;
+      --danger: #d93838;
+      --success: #1f8a55;
+      --radius: 14px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 20px; }
-    .container { max-width: 900px; margin: 0 auto; }
-    
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 14px;
+      line-height: 1.45;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
     header {
-      background: linear-gradient(135deg, #1b4332, #2d6a4f);
-      color: white;
-      padding: 24px;
-      border-radius: 16px;
+      background: linear-gradient(135deg, #092c22 0%, #165b47 100%);
+      color: #fff;
+      padding: 22px 16px;
+      border-radius: var(--radius);
       text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 8px 24px rgba(13, 59, 46, 0.15);
     }
-    .timer { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-top: 10px; }
 
-    .controls { display: flex; justify-content: flex-end; margin-bottom: 15px; }
-    .btn {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.2s;
+    .badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
     }
-    .btn-primary { background-color: var(--primary); color: white; }
-    .btn-accent { background-color: var(--accent); color: #000; }
-    .btn-danger { background-color: #e63946; color: white; }
 
-    .admin-panel {
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 0.86rem;
+      color: #cfe3db;
+      margin-bottom: 14px;
+    }
+
+    /* TAYMER */
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .timer-box {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .timer-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .timer-label {
+      font-size: 0.68rem;
+      color: #d8ece4;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* UMUMIY STATISTIKA */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 550px) {
+      .summary-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .summary-card {
       background: var(--card);
-      padding: 20px;
+      padding: 12px;
       border-radius: 12px;
-      border: 1px solid #ddd;
-      margin-bottom: 20px;
-      display: none;
-    }
-    .form-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-    input {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      flex: 1 1 150px;
-      font-size: 14px;
+      border: 1px solid var(--border);
+      text-align: center;
     }
 
-    .card-list { display: grid; gap: 16px; }
+    .summary-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .summary-lbl {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* BOSHQARUV PANELI */
+    .control-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      background: var(--card);
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      flex: 1 1 200px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      background: #fafcfb;
+    }
+    .search-input:focus { border-color: var(--primary-light); background: #fff; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      gap: 6px;
+      transition: opacity 0.15s;
+    }
+    .btn:active { opacity: 0.75; }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-accent { background: var(--accent); color: #1e1804; }
+    .btn-outline { background: #f0f4f2; color: var(--text); }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-sm { padding: 6px 10px; font-size: 0.78rem; border-radius: 6px; }
+
+    /* USTOZ STATUSI */
+    .admin-status {
+      display: none;
+      background: #fff8e6;
+      border: 1px solid #ffd591;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      align-items: center;
+      justify-content: space-between;
+      color: #8c5300;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .admin-status.active { display: flex; }
+
+    /* SHOGIRD QO'SHISH FORMASI */
+    .add-panel {
+      display: none;
+      background: var(--card);
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .add-panel.active { display: block; }
+    .panel-header {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 0.98rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    @media (min-width: 600px) {
+      .form-row { grid-template-columns: 1.5fr 1fr 1fr 1fr auto; }
+    }
+
+    input, select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+      background: #fff;
+    }
+
+    /* KARTALAR */
+    .card-list { display: grid; gap: 12px; }
+
     .student-card {
       background: var(--card);
-      padding: 18px;
+      border-radius: var(--radius);
+      padding: 15px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .user-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .rep-chip {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: #8c6a0c;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #fae7ba;
+    }
+
+    .percent-chip {
+      background: #eef5f1;
+      color: var(--primary);
+      padding: 4px 9px;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border-left: 5px solid var(--primary);
+      font-weight: 700;
+      font-size: 0.8rem;
     }
-    .student-header { display: flex; justify-content: space-between; align-items: center; }
-    .progress-bar-bg {
-      background: #e9ecef;
-      height: 10px;
+    .percent-chip.complete {
+      background: #e7f7ed;
+      color: var(--success);
+    }
+
+    /* 3 KHATM BOSQICHLARI */
+    .khatm-steps {
+      display: flex;
+      gap: 5px;
+      margin: 10px 0;
+    }
+
+    .step-item {
+      flex: 1;
+      padding: 6px 2px;
+      text-align: center;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #f1f4f2;
+      color: var(--muted);
+    }
+    .step-item.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .step-item.done {
+      background: #e6f7ec;
+      color: var(--success);
+    }
+
+    .progress-track {
+      height: 9px;
+      background: #edf1ee;
       border-radius: 5px;
-      margin: 12px 0;
       overflow: hidden;
+      margin-bottom: 12px;
     }
-    .progress-bar {
+
+    .progress-fill {
       height: 100%;
-      background: #2d6a4f;
+      background: linear-gradient(90deg, #165b47, #d4af37);
       width: 0%;
       transition: width 0.3s ease;
     }
-    .stats {
+
+    .data-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-      background: #f1f5f3;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      background: #f9fbf9;
       padding: 10px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      border: 1px solid #ecf1ee;
     }
-    .admin-inputs { margin-top: 12px; display: none; gap: 8px; }
+    @media (min-width: 500px) {
+      .data-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .data-col { display: flex; flex-direction: column; }
+    .data-label { font-size: 0.7rem; color: var(--muted); }
+    .data-val { font-size: 0.86rem; font-weight: 700; color: var(--text); }
+    .data-val.accent { color: var(--primary-light); }
+
+    /* USTOZNING TAHRIRLASH QISMI */
+    .teacher-box {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .teacher-box.active { display: flex; }
+
+    .quick-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .quick-row .btn { flex: 1 1 90px; }
+
+    .edit-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .edit-row input, .edit-row select {
+      flex: 1 1 110px;
+    }
+
+    /* MODAL OYNALAR (SODDA VA ISHONCHLI) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-content {
+      background: #fff;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 340px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .modal-content h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+    .modal-content p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .pin-input {
+      font-size: 1.3rem;
+      letter-spacing: 6px;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .modal-actions .btn { flex: 1; }
+
+    /* XABARLAR (TOAST) */
+    .toast-box {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10382d;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .toast-box.show { opacity: 1; transform: translate(-50%, -5px); }
   </style>
 </head>
 <body>
 
 <div class="container">
+
+  <!-- HEADER -->
   <header>
-    <h1>Ramazon-2027 Rejasi & Shogirdlar</h1>
-    <div id="countdown" class="timer">Yuklanmoqda...</div>
+    <div class="badge">✦ Ramazon-2027 Maxsus Rejasi ✦</div>
+    <h1>Qur'on Vazifalari & Hifz Rejasi</h1>
+    <p class="subtitle">3 marta to'liq xatm va mustahkam takrorlash nazorati</p>
+    
+    <div class="timer-grid">
+      <div class="timer-box">
+        <div class="timer-num" id="tDays">00</div>
+        <div class="timer-label">Kun</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-num" id="tHours">00</div>
+        <div class="timer-label">Soat</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-num" id="tMins">00</div>
+        <div class="timer-label">Daqiqa</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-num" id="tSecs">00</div>
+        <div class="timer-label">Soniya</div>
+      </div>
+    </div>
   </header>
 
-  <div class="controls">
-    <button id="authBtn" class="btn btn-primary" onclick="toggleAdmin()">Ustoz Kirishi (Admin)</button>
-  </div>
-
-  <div id="adminPanel" class="admin-panel">
-    <h3>Yangi shogird qo'shish</h3>
-    <div class="form-group">
-      <input type="text" id="sName" placeholder="Shogird ismi">
-      <input type="number" id="sTarget" placeholder="Jami vazifa (masalan: 30 pora)">
-      <button class="btn btn-primary" onclick="addStudent()">Qo'shish</button>
+  <!-- UMUMIY HISOBOT KARTALARI -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-val" id="sumCount">0</div>
+      <div class="summary-lbl">Jami Shogirdlar</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-val" id="sumDone">0</div>
+      <div class="summary-lbl">O'qilgan (Pora)</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-val" id="sumLeft">0</div>
+      <div class="summary-lbl">Qolgan (Pora)</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-val" id="sumPercent">0%</div>
+      <div class="summary-lbl">Umumiy Natija</div>
     </div>
   </div>
 
+  <!-- USTOZ REJIMI BILDIRISHNOMASI -->
+  <div id="adminBadge" class="admin-status">
+    <span>Ustoz rejimi faol — Shogirdlarni tahrirlashingiz mumkin</span>
+    <button class="btn btn-sm btn-danger" onclick="logoutAdmin()">Chiqish</button>
+  </div>
+
+  <!-- BOSHQARUV TUGMALARI VA QIDIRUV -->
+  <div class="control-bar">
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="Shogird ismini qidirish..." oninput="renderStudents()">
+    </div>
+    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+      <button class="btn btn-outline" onclick="copyReport()">📋 Hisobot</button>
+      <button id="authBtn" class="btn btn-primary" onclick="openLoginModal()">Ustoz Kirishi</button>
+    </div>
+  </div>
+
+  <!-- SHOGIRD QO'SHISH (FAQAT ADMIN) -->
+  <div id="addPanel" class="add-panel">
+    <div class="panel-header">➕ Yangi shogird qo'shish</div>
+    <div class="form-row">
+      <input type="text" id="newName" placeholder="Shogird ismi (masalan: Abdulloh)">
+      <select id="newKhatm">
+        <option value="1">1-Xatm (Yodlash)</option>
+        <option value="2">2-Xatm (Katta takror)</option>
+        <option value="3">3-Xatm (Silliqlash)</option>
+      </select>
+      <input type="number" id="newJuz" placeholder="Joriy pora (0-30)" min="0" max="30" step="0.5" value="0">
+      <select id="newPace">
+        <option value="0.5">Kuniga 0.5 pora</option>
+        <option value="1" selected>Kuniga 1 pora</option>
+        <option value="3">Kuniga 3 pora</option>
+      </select>
+      <button class="btn btn-accent" onclick="addNewStudent()">Qo'shish</button>
+    </div>
+  </div>
+
+  <!-- RO'YXAT -->
   <div class="card-list" id="studentsList"></div>
+
 </div>
 
-<script>
-  // Ramazon boshlanish taxminiy sanasi (2027-yil 8-fevral)
-  const RAMADAN_DATE = new Date("2027-02-08T00:00:00").getTime();
-  let isAdmin = false;
-  const ADMIN_PASS = "1234"; // Parolingiz
+<!-- USTOZ KIRISH OYNASI -->
+<div id="loginModal" class="modal-overlay">
+  <div class="modal-content">
+    <div style="font-size: 30px; margin-bottom: 6px;">🔐</div>
+    <h3>Ustoz Kirishi</h3>
+    <p>Boshqarish uchun PIN-kodni kiriting.<br><b>(Standart PIN: 1234)</b></p>
+    <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="6" inputmode="numeric">
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('loginModal')">Bekor</button>
+      <button class="btn btn-primary" onclick="verifyPin()">Kirish</button>
+    </div>
+  </div>
+</div>
 
-  let students = JSON.parse(localStorage.getItem('quran_students')) || [
-    { id: 1, name: "Abdulloh", target: 30, completed: 5 }
+<!-- O'CHIRISHNI TASDIQLASH -->
+<div id="deleteModal" class="modal-overlay">
+  <div class="modal-content">
+    <div style="font-size: 30px; margin-bottom: 6px;">🗑️</div>
+    <h3>O'chirish</h3>
+    <p id="deleteMsg">Haqiqatdan ham shogirdni o'chirmoqchimisiz?</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('deleteModal')">Yo'q</button>
+      <button class="btn btn-danger" id="confirmDelBtn">Ha, o'chirish</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast-box"></div>
+
+<script>
+  // Ramazon 2027 sanasi: 2027-yil 8-fevral
+  const TARGET_DATE = new Date("2027-02-08T00:00:00").getTime();
+  const MASTER_PIN = "1234";
+
+  // Admin holatini localStorage'da saqlaymiz (sahifa yangilanganda ham chiqib ketmaydi)
+  let isAdmin = localStorage.getItem('quran_teacher_auth') === 'true';
+  let targetDeleteId = null;
+
+  // Shogirdlar bazasi
+  let students = JSON.parse(localStorage.getItem('quran_group_db')) || [
+    {
+      id: 1,
+      name: "Abdulloh",
+      currentKhatm: 1,
+      khatm1: 15,
+      khatm2: 0,
+      khatm3: 0,
+      repPace: 1,
+      repNote: "1-15 poralar"
+    },
+    {
+      id: 2,
+      name: "Ibrohim",
+      currentKhatm: 2,
+      khatm1: 30,
+      khatm2: 12,
+      khatm3: 0,
+      repPace: 1,
+      repNote: "1-12 poralar"
+    },
+    {
+      id: 3,
+      name: "Muhammad",
+      currentKhatm: 3,
+      khatm1: 30,
+      khatm2: 30,
+      khatm3: 20,
+      repPace: 3,
+      repNote: "1-20 poralar (Katta takror)"
+    }
   ];
 
-  function saveAndRender() {
-    localStorage.setItem('quran_students', JSON.stringify(students));
+  function persist() {
+    localStorage.setItem('quran_group_db', JSON.stringify(students));
     renderStudents();
+    updateSummary();
   }
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = RAMADAN_DATE - now;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2600);
+  }
 
+  // TAYMER
+  function updateCountdown() {
+    const diff = TARGET_DATE - Date.now();
     if (diff <= 0) {
-      document.getElementById('countdown').innerText = "Ramazon oyi boshlandi!";
+      document.getElementById('tDays').innerText = "0";
+      document.getElementById('tHours').innerText = "00";
+      document.getElementById('tMins').innerText = "00";
+      document.getElementById('tSecs').innerText = "00";
       return 1;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById('countdown').innerText = 
-      `${days} kun, ${hours} soat, ${mins} daqiqa qoldi`;
-    return days > 0 ? days : 1;
+    document.getElementById('tDays').innerText = d;
+    document.getElementById('tHours').innerText = String(h).padStart(2, '0');
+    document.getElementById('tMins').innerText = String(m).padStart(2, '0');
+    document.getElementById('tSecs').innerText = String(s).padStart(2, '0');
+
+    return d > 0 ? d : 1;
   }
 
-  function toggleAdmin() {
-    if (!isAdmin) {
-      const pass = prompt("Boshqaruv uchun parolni kiriting:");
-      if (pass === ADMIN_PASS) {
-        isAdmin = true;
-        document.getElementById('authBtn').innerText = "Chiqish";
-        document.getElementById('authBtn').className = "btn btn-danger";
-        document.getElementById('adminPanel').style.display = "block";
-      } else if (pass !== null) {
-        alert("Noto'g'ri parol!");
-      }
+  // UMUMIY STATISTIKA (3 xatm = 90 pora)
+  function updateSummary() {
+    const totalCount = students.length;
+    const totalTarget = totalCount * 90;
+    let totalDone = 0;
+
+    students.forEach(s => {
+      totalDone += (s.khatm1 || 0) + (s.khatm2 || 0) + (s.khatm3 || 0);
+    });
+
+    const totalLeft = Math.max(0, totalTarget - totalDone);
+    const overallPct = totalTarget > 0 ? ((totalDone / totalTarget) * 100).toFixed(1) : 0;
+
+    document.getElementById('sumCount').innerText = totalCount;
+    document.getElementById('sumDone').innerText = totalDone.toFixed(1);
+    document.getElementById('sumLeft').innerText = totalLeft.toFixed(1);
+    document.getElementById('sumPercent').innerText = overallPct + "%";
+  }
+
+  // USTOZ TIZIMIGA KIRISH VA CHIQISH
+  function openLoginModal() {
+    if (isAdmin) {
+      logoutAdmin();
+      return;
+    }
+    const input = document.getElementById('pinInput');
+    input.value = "";
+    document.getElementById('loginModal').classList.add('open');
+    setTimeout(() => input.focus(), 150);
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  function verifyPin() {
+    const val = document.getElementById('pinInput').value.trim();
+    if (val === MASTER_PIN) {
+      isAdmin = true;
+      localStorage.setItem('quran_teacher_auth', 'true');
+      closeModal('loginModal');
+      updateAdminUI();
+      showToast("Ustoz tizimiga muvaffaqiyatli kirildi!");
     } else {
-      isAdmin = false;
-      document.getElementById('authBtn').innerText = "Ustoz Kirishi (Admin)";
-      document.getElementById('authBtn').className = "btn btn-primary";
-      document.getElementById('adminPanel').style.display = "none";
+      showToast("Noto'g'ri PIN-kod!");
+    }
+  }
+
+  // 'Enter' tugmasini bosganda ham kirish
+  document.getElementById('pinInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') verifyPin();
+  });
+
+  function logoutAdmin() {
+    isAdmin = false;
+    localStorage.removeItem('quran_teacher_auth');
+    updateAdminUI();
+    showToast("Ustoz rejimidan chiqildi");
+  }
+
+  function updateAdminUI() {
+    const authBtn = document.getElementById('authBtn');
+    const addPanel = document.getElementById('addPanel');
+    const adminBadge = document.getElementById('adminBadge');
+
+    if (isAdmin) {
+      authBtn.innerText = "Chiqish";
+      authBtn.className = "btn btn-danger";
+      addPanel.classList.add('active');
+      adminBadge.classList.add('active');
+    } else {
+      authBtn.innerText = "Ustoz Kirishi";
+      authBtn.className = "btn btn-primary";
+      addPanel.classList.remove('active');
+      adminBadge.classList.remove('active');
     }
     renderStudents();
   }
 
-  function addStudent() {
-    const name = document.getElementById('sName').value.trim();
-    const target = parseFloat(document.getElementById('sTarget').value);
+  // SHOGIRD QO'SHISH
+  function addNewStudent() {
+    const name = document.getElementById('newName').value.trim();
+    const khatm = parseInt(document.getElementById('newKhatm').value, 10);
+    const juz = Math.min(30, Math.max(0, parseFloat(document.getElementById('newJuz').value) || 0));
+    const pace = parseFloat(document.getElementById('newPace').value) || 1;
 
-    if (!name || isNaN(target) || target <= 0) {
-      alert("Iltimos, barcha maydonlarni to'g'ri to'ldiring.");
+    if (!name) {
+      showToast("Iltimos, ismni kiriting!");
       return;
     }
 
     students.push({
       id: Date.now(),
       name: name,
-      target: target,
-      completed: 0
+      currentKhatm: khatm,
+      khatm1: khatm === 1 ? juz : 30,
+      khatm2: khatm === 2 ? juz : (khatm > 2 ? 30 : 0),
+      khatm3: khatm === 3 ? juz : 0,
+      repPace: pace,
+      repNote: `1-${juz || 1} poralar`
     });
 
-    document.getElementById('sName').value = "";
-    document.getElementById('sTarget').value = "";
-    saveAndRender();
+    document.getElementById('newName').value = "";
+    document.getElementById('newJuz').value = "0";
+
+    persist();
+    showToast(`${name} ro'yxatga qo'shildi!`);
   }
 
-  function updateProgress(id) {
-    const val = parseFloat(document.getElementById(`input-${id}`).value);
-    if (isNaN(val) || val < 0) return;
+  // TEZKOR PROGRESS QO'SHISH (+0.5, +1, +3)
+  function quickAddJuz(id, val) {
+    const s = students.find(x => x.id === id);
+    if (!s) return;
 
-    const student = students.find(s => s.id === id);
-    if (student) {
-      student.completed = val;
-      saveAndRender();
+    if (s.currentKhatm === 1) {
+      s.khatm1 = Math.min(30, (s.khatm1 || 0) + val);
+      if (s.khatm1 >= 30) {
+        s.currentKhatm = 2;
+        showToast(`${s.name} 1-xatmni yakunladi! 2-xatmga o'tildi 🎉`);
+      }
+    } else if (s.currentKhatm === 2) {
+      s.khatm2 = Math.min(30, (s.khatm2 || 0) + val);
+      if (s.khatm2 >= 30) {
+        s.currentKhatm = 3;
+        showToast(`${s.name} 2-xatmni yakunladi! 3-xatmga o'tildi 🎉`);
+      }
+    } else {
+      s.khatm3 = Math.min(30, (s.khatm3 || 0) + val);
+      if (s.khatm3 >= 30) {
+        showToast(`Muborak bo'lsin! ${s.name} 3 ta xatmni to'liq tugatdi! 🏆`);
+      }
     }
+
+    persist();
   }
 
-  function deleteStudent(id) {
-    if (confirm("Bu shogirdni o'chirmoqchimisiz?")) {
-      students = students.filter(s => s.id !== id);
-      saveAndRender();
+  // SHOGIRD MA'LUMOTLARINI TAHRIRLASH
+  function saveStudentEdit(id) {
+    const s = students.find(x => x.id === id);
+    if (!s) return;
+
+    const khatm = parseInt(document.getElementById(`e-khatm-${id}`).value, 10);
+    const juz = Math.min(30, Math.max(0, parseFloat(document.getElementById(`e-juz-${id}`).value) || 0));
+    const pace = parseFloat(document.getElementById(`e-pace-${id}`).value) || 1;
+    const note = document.getElementById(`e-note-${id}`).value.trim();
+
+    s.currentKhatm = khatm;
+    s.repPace = pace;
+    s.repNote = note;
+
+    if (khatm === 1) {
+      s.khatm1 = juz;
+      s.khatm2 = 0;
+      s.khatm3 = 0;
+    } else if (khatm === 2) {
+      s.khatm1 = 30;
+      s.khatm2 = juz;
+      s.khatm3 = 0;
+    } else if (khatm === 3) {
+      s.khatm1 = 30;
+      s.khatm2 = 30;
+      s.khatm3 = juz;
     }
+
+    persist();
+    showToast(`${s.name} yangilandi!`);
   }
 
+  // O'CHIRISH
+  function openDeleteModal(id) {
+    const s = students.find(x => x.id === id);
+    if (!s) return;
+    targetDeleteId = id;
+    document.getElementById('deleteMsg').innerText = `"${s.name}" ismli shogirdni o'chirmoqchimisiz?`;
+    document.getElementById('confirmDelBtn').onclick = function() {
+      students = students.filter(x => x.id !== targetDeleteId);
+      closeModal('deleteModal');
+      persist();
+      showToast("Shogird o'chirildi");
+    };
+    document.getElementById('deleteModal').classList.add('open');
+  }
+
+  // TELEGRAM / GURUHLAR UCHUN HISOBOT
+  function copyReport() {
+    const days = updateCountdown();
+    let rep = "📖 *RAMAZON-2027 HIFZ VA 3 XATM REJASI*\n\n";
+    rep += `⏳ Ramazongacha: ${days} kun qoldi\n`;
+    rep += `👥 Shogirdlar soni: ${students.length} nafar\n`;
+    rep += "----------------------------------------\n";
+
+    students.forEach((s, idx) => {
+      const curJuz = s.currentKhatm === 1 ? s.khatm1 : (s.currentKhatm === 2 ? s.khatm2 : s.khatm3);
+      const totalRead = (s.khatm1 || 0) + (s.khatm2 || 0) + (s.khatm3 || 0);
+      const pct = ((totalRead / 90) * 100).toFixed(0);
+
+      rep += `${idx + 1}. *${s.name}*:\n`;
+      rep += `   • Bosqich: ${s.currentKhatm}-Xatm (${curJuz}/30 pora)\n`;
+      rep += `   • Takrorlash sur'ati: ${s.repPace} poradan\n`;
+      rep += `   • Takror joyi: ${s.repNote || 'Muntazam'}\n`;
+      rep += `   • Umumiy: ${totalRead.toFixed(1)}/90 pora (${pct}%)\n\n`;
+    });
+
+    rep += "----------------------------------------\n";
+    rep += "Alloh taolo barchamizga Qur'onni to'liq xatm qilishni nasib etsin! 🤲";
+
+    const dummy = document.createElement("textarea");
+    dummy.value = rep;
+    document.body.appendChild(dummy);
+    dummy.select();
+    try {
+      document.execCommand('copy');
+      showToast("Hisobot buferga nusxalandi!");
+    } catch(e) {
+      showToast("Nusxalab bo'lmadi");
+    }
+    document.body.removeChild(dummy);
+  }
+
+  // KARTALARNI EKRANGA CHIQARISH
   function renderStudents() {
-    const daysLeft = updateCountdown();
+    const days = updateCountdown();
     const list = document.getElementById('studentsList');
+    const query = document.getElementById('searchInput').value.toLowerCase();
+
+    const filtered = students.filter(s => s.name.toLowerCase().includes(query));
     list.innerHTML = "";
 
-    students.forEach(s => {
-      const remaining = Math.max(0, s.target - s.completed);
-      const dailyTarget = (remaining / daysLeft).toFixed(2);
-      const percent = Math.min(100, ((s.completed / s.target) * 100)).toFixed(1);
+    if (filtered.length === 0) {
+      list.innerHTML = `
+        <div style="background:#fff; border-radius:12px; padding:30px; text-align:center; color:var(--muted); border:1px dashed var(--border);">
+          Hech qanday shogird topilmadi
+        </div>
+      `;
+      return;
+    }
+
+    filtered.forEach(s => {
+      const curJuz = s.currentKhatm === 1 ? (s.khatm1 || 0) : (s.currentKhatm === 2 ? (s.khatm2 || 0) : (s.khatm3 || 0));
+      const totalDone = (s.khatm1 || 0) + (s.khatm2 || 0) + (s.khatm3 || 0);
+      const totalLeft = Math.max(0, 90 - totalDone);
+      const dailyNeed = (totalLeft / days).toFixed(2);
+      const pct = Math.min(100, ((totalDone / 90) * 100)).toFixed(1);
+      const isAllDone = totalDone >= 90;
 
       const card = document.createElement('div');
       card.className = "student-card";
       card.innerHTML = `
-        <div class="student-header">
-          <h2>${s.name}</h2>
-          ${isAdmin ? `<button class="btn btn-danger" style="padding:4px 8px;font-size:12px;" onclick="deleteStudent(${s.id})">O'chirish</button>` : ''}
-        </div>
-        
-        <div class="progress-bar-bg">
-          <div class="progress-bar" style="width: ${percent}%"></div>
-        </div>
-
-        <div class="stats">
-          <div><strong>Jami reja:</strong> ${s.target}</div>
-          <div><strong>O'qilgan:</strong> ${s.completed}</div>
-          <div><strong>Qolgan:</strong> ${remaining.toFixed(1)}</div>
-          <div><strong>Kunlik vazifa:</strong> ${dailyTarget} / kun</div>
-          <div><strong>Bajarildi:</strong> ${percent}%</div>
-        </div>
-
-        ${isAdmin ? `
-          <div class="admin-inputs" style="display:flex;">
-            <input type="number" step="0.5" id="input-${s.id}" placeholder="Yangi ko'rsatkich" value="${s.completed}">
-            <button class="btn btn-accent" onclick="updateProgress(${s.id})">Yangilash</button>
+        <div class="card-top">
+          <div class="user-profile">
+            <div class="user-avatar">${s.name.charAt(0).toUpperCase()}</div>
+            <div>
+              <div class="user-name">${s.name}</div>
+              <div class="rep-chip">🔁 Takror: ${s.repPace} poradan</div>
+            </div>
           </div>
-        ` : ''}
+          <div class="percent-chip ${isAllDone ? 'complete' : ''}">
+            ${isAllDone ? '3 Xatm Tugadi 🏆' : pct + '% (90 dan)'}
+          </div>
+        </div>
+
+        <div class="khatm-steps">
+          <div class="step-item ${(s.khatm1 || 0) >= 30 ? 'done' : (s.currentKhatm === 1 ? 'active' : '')}">
+            1-Xatm: ${(s.khatm1 || 0) >= 30 ? '✓' : (s.khatm1 || 0) + '/30'}
+          </div>
+          <div class="step-item ${(s.khatm2 || 0) >= 30 ? 'done' : (s.currentKhatm === 2 ? 'active' : '')}">
+            2-Xatm: ${(s.khatm2 || 0) >= 30 ? '✓' : (s.khatm2 || 0) + '/30'}
+          </div>
+          <div class="step-item ${(s.khatm3 || 0) >= 30 ? 'done' : (s.currentKhatm === 3 ? 'active' : '')}">
+            3-Xatm: ${(s.khatm3 || 0) >= 30 ? '✓' : (s.khatm3 || 0) + '/30'}
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" style="width: ${pct}%;"></div>
+        </div>
+
+        <div class="data-grid">
+          <div class="data-col">
+            <span class="data-label">Joriy bosqich</span>
+            <span class="data-val accent">${s.currentKhatm}-Xatm (${curJuz} pora)</span>
+          </div>
+          <div class="data-col">
+            <span class="data-label">Takror oralig'i</span>
+            <span class="data-val">${s.repNote || '1-10 poralar'}</span>
+          </div>
+          <div class="data-col">
+            <span class="data-label">Qolgan poralar</span>
+            <span class="data-val">${totalLeft.toFixed(1)} pora</span>
+          </div>
+          <div class="data-col">
+            <span class="data-label">Kunlik me'yor</span>
+            <span class="data-val">${isAllDone ? '0' : dailyNeed} pora/kun</span>
+          </div>
+        </div>
+
+        <div class="teacher-box ${isAdmin ? 'active' : ''}">
+          <div class="quick-row">
+            <button class="btn btn-sm btn-outline" onclick="quickAddJuz(${s.id}, 0.5)">+0.5 pora</button>
+            <button class="btn btn-sm btn-outline" onclick="quickAddJuz(${s.id}, 1)">+1.0 pora</button>
+            <button class="btn btn-sm btn-accent" onclick="quickAddJuz(${s.id}, 3)">+3 pora (Katta takror)</button>
+          </div>
+          <div class="edit-row">
+            <select id="e-khatm-${s.id}">
+              <option value="1" ${s.currentKhatm === 1 ? 'selected' : ''}>1-Xatm</option>
+              <option value="2" ${s.currentKhatm === 2 ? 'selected' : ''}>2-Xatm</option>
+              <option value="3" ${s.currentKhatm === 3 ? 'selected' : ''}>3-Xatm</option>
+            </select>
+            <input type="number" step="0.5" id="e-juz-${s.id}" value="${curJuz}" min="0" max="30" placeholder="Pora">
+            <select id="e-pace-${s.id}">
+              <option value="0.5" ${s.repPace === 0.5 ? 'selected' : ''}>0.5 poradan</option>
+              <option value="1" ${s.repPace === 1 ? 'selected' : ''}>1 poradan</option>
+              <option value="3" ${s.repPace === 3 ? 'selected' : ''}>3 poradan</option>
+            </select>
+            <input type="text" id="e-note-${s.id}" value="${s.repNote || ''}" placeholder="Takror joyi">
+            <button class="btn btn-sm btn-accent" onclick="saveStudentEdit(${s.id})">Saqlash</button>
+            <button class="btn btn-sm btn-danger" onclick="openDeleteModal(${s.id})">O'chirish</button>
+          </div>
+        </div>
       `;
       list.appendChild(card);
     });
   }
 
-  setInterval(updateCountdown, 60000);
-  renderStudents();
+  // Dasturni ishga tushirish
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+  updateAdminUI();
+  persist();
 </script>
 
 </body>
 </html>
+
