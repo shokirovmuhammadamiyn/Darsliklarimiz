@@ -20,7 +20,6 @@
             brand: {
               50: '#ecfdf5',
               100: '#d1fae5',
-              500: '#10b981',
               600: '#059669',
               700: '#047857',
               800: '#065f46',
@@ -53,7 +52,7 @@
     <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mb-4">Qur'on Vazifalari & Hifz Nazorati</h1>
 
     <!-- Qolgan vaqt sanagichi -->
-    <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto">
+    <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto mb-3">
       <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 sm:p-2.5 text-center">
         <span id="cdDays" class="block text-lg sm:text-2xl font-black text-amber-300">0</span>
         <span class="block text-[10px] font-bold text-emerald-200 uppercase tracking-wider">Kun</span>
@@ -72,27 +71,14 @@
       </div>
     </div>
 
-    <!-- Onlayn Sinxronlash Holati -->
-    <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-emerald-200/90">
-      <span id="syncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-      <span id="syncStatusText">Bulutli xotira ulanmoqda...</span>
+    <!-- Jonli Holat Indikatori -->
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/25 text-[11px] font-semibold text-emerald-200 border border-white/10">
+      <span id="cloudDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span id="cloudStatusText">Jonli sinxron</span>
     </div>
   </header>
 
-  <!-- Planshetdagi eski ma'lumotlarni ko'chirish taklifi barchaga ko'rinmaydi, faqat mavjud bo'lsa chiqadi -->
-  <div id="migrationAlert" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-3.5 mb-4 shadow-sm">
-    <div class="flex items-center justify-between gap-2 flex-wrap">
-      <div class="flex items-center gap-2 text-amber-900 text-xs font-bold">
-        <i class="fa-solid fa-cloud-arrow-up text-amber-600 text-base"></i>
-        <span>Ushbu qurilmada saqlangan shogirdlar topildi! Ularni bulutga ko'chirasizmi?</span>
-      </div>
-      <button id="runMigrationBtn" class="bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs px-3 py-2 rounded-xl transition shadow-sm flex items-center gap-1">
-        <i class="fa-solid fa-upload"></i> Hammasini Bulutga Yuklash
-      </button>
-    </div>
-  </div>
-
-  <!-- Boshqaruv qatori -->
+  <!-- Qidiruv va Kirish paneli -->
   <div class="flex gap-2 mb-4">
     <div class="relative flex-1">
       <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
@@ -111,36 +97,31 @@
     </button>
   </div>
 
-  <!-- Ustoz paneli -->
+  <!-- Ustoz boshqaruv paneli -->
   <div id="adminPanel" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-3 mb-4 shadow-sm flex flex-wrap items-center justify-between gap-2.5">
     <div class="flex items-center gap-2 text-brand-900 font-bold text-xs sm:text-sm">
-      <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping"></span>
       <span>Ustoz rejimi faol</span>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <button id="addStudentBtn" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="addStudentBtn" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5">
         <i class="fa-solid fa-user-plus"></i> Yangi Shogird
       </button>
-      <button id="openPinModalBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="openPinModalBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5">
         <i class="fa-solid fa-key"></i> PIN o'zgartirish
       </button>
-      <button id="logoutBtn" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="logoutBtn" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5">
         <i class="fa-solid fa-right-from-bracket"></i> Chiqish
       </button>
     </div>
   </div>
 
   <!-- Shogirdlar ro'yxati -->
-  <div id="studentsContainer" class="space-y-3.5">
-    <div class="bg-white rounded-2xl p-10 text-center text-slate-400 border border-slate-200 shadow-sm">
-      <i class="fa-solid fa-spinner fa-spin text-3xl mb-2 text-brand-600"></i>
-      <p class="font-bold text-sm text-slate-600">Bulutdagi ma'lumotlar yuklanmoqda...</p>
-    </div>
-  </div>
+  <div id="studentsContainer" class="space-y-3.5"></div>
 
 </div>
 
-<!-- 1. Ustoz Kirish Modali -->
+<!-- 1. Ustoz Kirish Modali (Parol ko'rsatilmaydi) -->
 <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
   <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl border border-slate-100">
     <div class="flex items-center justify-between mb-4">
@@ -158,7 +139,7 @@
         type="password" 
         id="loginPinInput" 
         inputmode="numeric" 
-        placeholder="PIN kodni kiriting" 
+        placeholder="••••" 
         class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-center text-lg tracking-widest font-bold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition"
       >
     </div>
@@ -179,11 +160,11 @@
     <div class="space-y-3 mb-4">
       <div>
         <label class="block text-xs font-bold text-slate-500 mb-1">Eski PIN kod</label>
-        <input type="password" id="oldPinInput" inputmode="numeric" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <input type="password" id="oldPinInput" inputmode="numeric" placeholder="Eski PIN" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-500 mb-1">Yangi PIN kod (kamida 4 ta raqam)</label>
-        <input type="password" id="newPinInput" inputmode="numeric" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <input type="password" id="newPinInput" inputmode="numeric" placeholder="Yangi PIN" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
       </div>
     </div>
     <div class="flex gap-2">
@@ -205,7 +186,7 @@
     <div class="space-y-3.5 mb-5">
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Shogird Ismi *</label>
-        <input type="text" id="inputStudentName" placeholder="Masalan: Muhammadamin" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+        <input type="text" id="inputStudentName" placeholder="Masalan: محمد أمين" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
       </div>
 
       <div class="grid grid-cols-2 gap-2">
@@ -221,14 +202,14 @@
 
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Takrorlash rejasi</label>
-        <input type="text" id="inputStudentRevision" placeholder="Masalan: Har kuni yarim poradan takror" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+        <input type="text" id="inputStudentRevision" placeholder="Masalan: 1 pora takror" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
       </div>
 
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Rasmi (ixtiyoriy)</label>
         <input type="file" id="inputStudentPhoto" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer">
         <div id="photoPreviewContainer" class="hidden mt-2 flex items-center gap-3">
-          <img id="photoPreviewImg" class="w-12 h-12 rounded-full object-cover border-2 border-brand-500">
+          <img id="photoPreviewImg" class="w-12 h-12 rounded-full object-cover border-2 border-brand-500 shadow-sm">
           <button type="button" id="clearPhotoBtn" class="text-xs text-rose-600 font-semibold hover:underline">Rasmni tozalash</button>
         </div>
       </div>
@@ -241,7 +222,7 @@
   </div>
 </div>
 
-<!-- 4. Dars & Takror Kiritish Modali -->
+<!-- 4. Dars & Takror Kiritish Modali (Qo'lda erkin yozish) -->
 <div id="dailyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
   <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl border border-slate-100">
     <div class="flex items-center justify-between mb-3">
@@ -252,16 +233,16 @@
     
     <div class="space-y-3 mb-4">
       <div>
-        <label class="block text-xs font-bold text-slate-600 mb-1">Bugun o'tilgan dars miqdori (raqam)</label>
-        <input type="number" step="any" id="inputDailyAdded" placeholder="Masalan: 2 yoki 1.5" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <label class="block text-xs font-bold text-slate-600 mb-1">Bugun topshirilgan dars miqdori (raqam)</label>
+        <input type="number" step="any" id="inputDailyAdded" placeholder="Masalan: 1 yoki 2" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Bugungi takrorlangan qism</label>
-        <input type="text" id="inputDailyRev" placeholder="Masalan: 2-pora qaytarildi" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <input type="text" id="inputDailyRev" placeholder="Masalan: Yarim pora yoki 1 pora" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
       <div>
-        <label class="block text-xs font-bold text-slate-600 mb-1">Qo'shimcha izoh</label>
-        <input type="text" id="inputDailyNote" placeholder="Darsni yaxshi topshirdi..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <label class="block text-xs font-bold text-slate-600 mb-1">Qo'shimcha izoh (ixtiyoriy)</label>
+        <input type="text" id="inputDailyNote" placeholder="Tajvid yaxshi, dars o'tdi..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
     </div>
 
@@ -298,7 +279,7 @@
       <i class="fa-solid fa-trash"></i>
     </div>
     <h3 class="font-extrabold text-slate-800 text-base mb-1">O'chirilsinmi?</h3>
-    <p id="confirmMessage" class="text-xs text-slate-500 mb-4 font-medium">Ushbu shogird va uning barcha hisoboti butunlay o'chiriladi.</p>
+    <p id="confirmMessage" class="text-xs text-slate-500 mb-4 font-medium">Shogird va uning hisoboti o'chiriladi.</p>
     <div class="flex gap-2">
       <button class="modal-close-btn flex-1 py-2 bg-slate-100 text-slate-700 font-bold rounded-xl text-xs" data-target="confirmModal">Bekor</button>
       <button id="confirmDeleteBtn" class="flex-1 py-2 bg-rose-600 text-white font-bold rounded-xl text-xs">O'chirish</button>
@@ -306,59 +287,252 @@
   </div>
 </div>
 
-<!-- Bildirishnoma (Toast) -->
+<!-- Xabarnoma (Toast) -->
 <div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur text-white px-4 py-2.5 rounded-2xl shadow-xl text-xs font-bold hidden z-50 transition-all border border-slate-700">
   <span id="toastMsg">Xabar</span>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'quran-ramadan-2027';
-const firebaseConfig = typeof __firebase_config !== 'undefined' 
-  ? JSON.parse(__firebase_config) 
-  : {
-      apiKey: "AIzaSyQuranAppLiveDemoDefaultKeyForWebClient",
-      authDomain: "quran-ramadan-live.firebaseapp.com",
-      projectId: "quran-ramadan-live",
-      storageBucket: "quran-ramadan-live.appspot.com",
-      messagingSenderId: "9876543210",
-      appId: "1:9876543210:web:abcdef123456"
-    };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
+// Firebase sozlamalari va Id larni aniqlash
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'quran-hifz-app';
 const TARGET_RAMADAN_DATE = new Date("2027-02-08T00:00:00").getTime();
 
+// Boshlang'ich 3 nafar shogird
+const DEFAULT_STUDENTS = [
+  {
+    id: "std_1",
+    name: "محمد أمين",
+    target: 410,
+    completed: 0,
+    unit: "bet",
+    revision: "1 pora",
+    photo: "",
+    history: []
+  },
+  {
+    id: "std_2",
+    name: "محمدی",
+    target: 380,
+    completed: 0,
+    unit: "bet",
+    revision: "6 bet",
+    photo: "",
+    history: []
+  },
+  {
+    id: "std_3",
+    name: "محمد صفی",
+    target: 78,
+    completed: 0,
+    unit: "bet",
+    revision: "7 bet",
+    photo: "",
+    history: []
+  }
+];
+
+let db = null;
+let auth = null;
 let currentUser = null;
-let isAdmin = false;
+let isAdmin = localStorage.getItem("quran_admin_logged") === "true";
 let storedPin = "1234";
-let studentsList = [];
+let studentsList = DEFAULT_STUDENTS;
 let activeStudentPhoto = "";
 let pendingDeleteId = null;
+
+// Firebase Realtime zaxira API (GitHub Pages kabi mustaqil xosting uchun)
+const BACKUP_RTDB_URL = "https://hifz-rejasi-default-rtdb.firebaseio.com/quran_app.json";
+
+function updateCloudStatus(isOnline, message) {
+  const dot = document.getElementById("cloudDot");
+  const txt = document.getElementById("cloudStatusText");
+  if (!dot || !txt) return;
+
+  if (isOnline) {
+    dot.className = "w-2 h-2 rounded-full bg-emerald-400";
+    txt.innerText = message || "🟢 Jonli sinxron";
+  } else {
+    dot.className = "w-2 h-2 rounded-full bg-amber-400";
+    txt.innerText = message || "🟡 Oflayn rejim";
+  }
+}
 
 function showToast(msg) {
   const box = document.getElementById("toastBox");
   const text = document.getElementById("toastMsg");
+  if (!box || !text) return;
   text.innerText = msg;
   box.classList.remove("hidden");
-  setTimeout(() => {
-    box.classList.add("hidden");
-  }, 2800);
+  setTimeout(() => box.classList.add("hidden"), 2500);
 }
 
-function openModal(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.add("modal-active");
+function saveLocally() {
+  try {
+    localStorage.setItem("quran_students_cache", JSON.stringify(studentsList));
+    localStorage.setItem("quran_pin_cache", storedPin);
+  } catch (e) {}
 }
 
-function closeModal(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.remove("modal-active");
+function loadLocally() {
+  try {
+    const cached = localStorage.getItem("quran_students_cache");
+    const cachedPin = localStorage.getItem("quran_pin_cache");
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (Array.isArray(parsed) && parsed.length > 0) studentsList = parsed;
+    }
+    if (cachedPin) storedPin = cachedPin;
+  } catch (e) {
+    studentsList = DEFAULT_STUDENTS;
+  }
+}
+
+async function syncDataToCloud() {
+  saveLocally();
+  renderApp();
+
+  // 1. Agar Firebase Firestore faol bo'lsa
+  if (db && currentUser) {
+    try {
+      const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
+      await setDoc(settingsDocRef, { pin: storedPin, updatedAt: Date.now() }, { merge: true });
+
+      for (const student of studentsList) {
+        const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', student.id);
+        await setDoc(studentDocRef, student, { merge: true });
+      }
+      updateCloudStatus(true, "🟢 Saqlandi (Jonli)");
+      return;
+    } catch (err) {
+      console.warn("Firestore saqlashda ogohlantirish:", err);
+    }
+  }
+
+  // 2. GitHub Pages uchun zaxira Realtime kanali
+  try {
+    const payload = {
+      pin: storedPin,
+      students: studentsList,
+      lastUpdated: Date.now()
+    };
+    const res = await fetch(BACKUP_RTDB_URL, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      updateCloudStatus(true, "🟢 Saqlandi (Jonli)");
+    } else {
+      updateCloudStatus(false, "🟡 Oflayn saqlandi");
+    }
+  } catch (e) {
+    updateCloudStatus(false, "🟡 Mahalliy saqlandi");
+  }
+}
+
+async function initFirebaseSystem() {
+  let hasValidEnvConfig = false;
+
+  if (typeof __firebase_config !== 'undefined') {
+    try {
+      const firebaseConfig = JSON.parse(__firebase_config);
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+
+      // Auth avval bajariladi (Rule 3)
+      if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+        await signInWithCustomToken(auth, __initial_auth_token);
+      } else {
+        await signInAnonymously(auth);
+      }
+
+      currentUser = auth.currentUser;
+      hasValidEnvConfig = true;
+
+      // Firestore realtime eshituvchisi (Rule 1 & Rule 2)
+      const studentsCol = collection(db, 'artifacts', appId, 'public', 'data', 'students');
+      onSnapshot(studentsCol, (snapshot) => {
+        if (!snapshot.empty) {
+          const list = [];
+          snapshot.forEach(docSnap => {
+            list.push(docSnap.data());
+          });
+          if (list.length > 0) {
+            studentsList = list;
+            saveLocally();
+            renderApp();
+            updateCloudStatus(true, "🟢 Jonli sinxron");
+          }
+        } else {
+          // Baza bo'sh bo'lsa dastlabki shogirdlarni kiritamiz
+          syncDataToCloud();
+        }
+      }, (error) => {
+        console.warn("Firestore onSnapshot error:", error);
+        fallbackToRTDB();
+      });
+
+      // PIN sozlamalarini olish
+      const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
+      onSnapshot(settingsDocRef, (snap) => {
+        if (snap.exists() && snap.data().pin) {
+          storedPin = snap.data().pin;
+          saveLocally();
+        }
+      }, (err) => console.warn("Settings error:", err));
+
+    } catch (err) {
+      console.warn("Firestore ulanish xatosi, zaxira kanaliga o'tiladi:", err);
+      fallbackToRTDB();
+    }
+  } else {
+    fallbackToRTDB();
+  }
+}
+
+// GitHub Pages uchun to'g'ridan-to'g'ri Realtime ulanishi
+async function fallbackToRTDB() {
+  try {
+    const res = await fetch(BACKUP_RTDB_URL);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && Array.isArray(data.students) && data.students.length > 0) {
+        studentsList = data.students;
+        if (data.pin) storedPin = data.pin;
+        saveLocally();
+        renderApp();
+        updateCloudStatus(true, "🟢 Jonli sinxron");
+      } else {
+        syncDataToCloud();
+      }
+    } else {
+      updateCloudStatus(false, "🟡 Oflayn rejim");
+    }
+  } catch (err) {
+    updateCloudStatus(false, "🟡 Oflayn rejim");
+  }
+
+  // Jonli yangilanishlarni qabul qilish
+  try {
+    const sse = new EventSource(BACKUP_RTDB_URL);
+    sse.addEventListener("put", (ev) => {
+      try {
+        const payload = JSON.parse(ev.data);
+        if (payload && payload.data && Array.isArray(payload.data.students)) {
+          studentsList = payload.data.students;
+          if (payload.data.pin) storedPin = payload.data.pin;
+          saveLocally();
+          renderApp();
+          updateCloudStatus(true, "🟢 Jonli sinxron");
+        }
+      } catch (ex) {}
+    });
+  } catch (e) {}
 }
 
 function updateCountdown() {
@@ -370,12 +544,27 @@ function updateCountdown() {
   const mins = Math.max(0, Math.floor((diff / (1000 * 60)) % 60));
   const secs = Math.max(0, Math.floor((diff / 1000) % 60));
 
-  document.getElementById("cdDays").innerText = days;
-  document.getElementById("cdHours").innerText = hours;
-  document.getElementById("cdMins").innerText = mins;
-  document.getElementById("cdSecs").innerText = secs;
+  const elD = document.getElementById("cdDays");
+  const elH = document.getElementById("cdHours");
+  const elM = document.getElementById("cdMins");
+  const elS = document.getElementById("cdSecs");
+
+  if (elD) elD.innerText = days;
+  if (elH) elH.innerText = hours;
+  if (elM) elM.innerText = mins;
+  if (elS) elS.innerText = secs;
 
   return days > 0 ? days : 1;
+}
+
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add("modal-active");
+}
+
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("modal-active");
 }
 
 function syncAdminUI() {
@@ -394,128 +583,6 @@ function syncAdminUI() {
     adminPanel.classList.remove("flex");
   }
   renderApp();
-}
-
-function checkLocalStorageForOldData() {
-  try {
-    const raw = localStorage.getItem("quran_students_v3") || localStorage.getItem("quran_students_v2");
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        document.getElementById("migrationAlert").classList.remove("hidden");
-      }
-    }
-  } catch (e) {}
-}
-
-document.getElementById("runMigrationBtn").onclick = async () => {
-  try {
-    const raw = localStorage.getItem("quran_students_v3") || localStorage.getItem("quran_students_v2");
-    if (!raw) return;
-    const parsed = JSON.parse(raw);
-    showToast("Bulutga yuklanmoqda...");
-
-    for (const st of parsed) {
-      const docId = st.id ? 'std_' + String(st.id) : 'std_' + Date.now() + Math.floor(Math.random() * 100);
-      await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'students', docId), {
-        name: st.name || "Shogird",
-        target: Number(st.target) || 410,
-        completed: Number(st.completed) || 0,
-        unit: st.unit || "bet",
-        revision: st.revision || "",
-        photo: st.photo || "",
-        history: st.history || [],
-        createdAt: Date.now()
-      }, { merge: true });
-    }
-
-    document.getElementById("migrationAlert").classList.add("hidden");
-    showToast("Barcha eski shogirdlar bulutga ko'chirildi!");
-  } catch (err) {
-    showToast("Ko'chirishda xatolik yuz berdi");
-  }
-};
-
-function setupCloudListeners() {
-  if (!currentUser) return;
-
-  const syncStatusText = document.getElementById("syncStatusText");
-  const syncDot = document.getElementById("syncDot");
-
-  const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
-  onSnapshot(settingsDocRef, (snap) => {
-    if (snap.exists() && snap.data().pin) {
-      storedPin = snap.data().pin;
-    } else {
-      setDoc(settingsDocRef, { pin: "1234" }, { merge: true }).catch(() => {});
-    }
-  });
-
-  const studentsColRef = collection(db, 'artifacts', appId, 'public', 'data', 'students');
-  onSnapshot(studentsColRef, (snapshot) => {
-    syncStatusText.innerText = "Bulutli xotira bilan bog'langan (Jonli)";
-    syncDot.className = "w-2 h-2 rounded-full bg-emerald-400";
-
-    const list = [];
-    snapshot.forEach(docSnap => {
-      list.push({ id: docSnap.id, ...docSnap.data() });
-    });
-
-    list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-    if (list.length === 0 && snapshot.empty) {
-      const initialStudents = [
-        {
-          id: 'std_1',
-          name: "محمد أمين",
-          target: 410,
-          completed: 0,
-          unit: "bet",
-          revision: "1 pora",
-          photo: "",
-          history: [],
-          createdAt: Date.now() - 3000
-        },
-        {
-          id: 'std_2',
-          name: "محمدی",
-          target: 380,
-          completed: 0,
-          unit: "bet",
-          revision: "6 bet",
-          photo: "",
-          history: [],
-          createdAt: Date.now() - 2000
-        },
-        {
-          id: 'std_3',
-          name: "محمد صفی",
-          target: 78,
-          completed: 0,
-          unit: "bet",
-          revision: "7 bet",
-          photo: "",
-          history: [],
-          createdAt: Date.now() - 1000
-        }
-      ];
-
-      initialStudents.forEach(st => {
-        setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'students', st.id), st).catch(() => {});
-      });
-
-      studentsList = initialStudents;
-    } else {
-      studentsList = list;
-    }
-
-    renderApp();
-    checkLocalStorageForOldData();
-  }, (error) => {
-    console.error("Firestore error:", error);
-    syncStatusText.innerText = "Mahalliy rejimda ishlamoqda";
-    syncDot.className = "w-2 h-2 rounded-full bg-amber-400";
-  });
 }
 
 function renderApp() {
@@ -662,7 +729,7 @@ document.getElementById('inputStudentPhoto').addEventListener('change', function
     const img = new Image();
     img.onload = function() {
       const canvas = document.createElement("canvas");
-      const MAX_SIZE = 140;
+      const MAX_SIZE = 100;
       let width = img.width;
       let height = img.height;
 
@@ -682,7 +749,7 @@ document.getElementById('inputStudentPhoto').addEventListener('change', function
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, width, height);
 
-      activeStudentPhoto = canvas.toDataURL("image/jpeg", 0.85);
+      activeStudentPhoto = canvas.toDataURL("image/jpeg", 0.7);
       document.getElementById("photoPreviewImg").src = activeStudentPhoto;
       document.getElementById("photoPreviewContainer").classList.remove("hidden");
     };
@@ -700,6 +767,7 @@ document.getElementById('clearPhotoBtn').onclick = () => {
 document.getElementById('authBtn').onclick = () => {
   if (isAdmin) {
     isAdmin = false;
+    localStorage.removeItem("quran_admin_logged");
     syncAdminUI();
     showToast("Ustoz rejimidan chiqildi.");
   } else {
@@ -713,6 +781,7 @@ document.getElementById('submitLoginBtn').onclick = () => {
   const enteredPin = document.getElementById("loginPinInput").value.trim();
   if (enteredPin === storedPin) {
     isAdmin = true;
+    localStorage.setItem("quran_admin_logged", "true");
     closeModal("loginModal");
     syncAdminUI();
     showToast("Xush kelibsiz, Ustoz!");
@@ -723,6 +792,7 @@ document.getElementById('submitLoginBtn').onclick = () => {
 
 document.getElementById('logoutBtn').onclick = () => {
   isAdmin = false;
+  localStorage.removeItem("quran_admin_logged");
   syncAdminUI();
   showToast("Ustoz rejimidan chiqildi.");
 };
@@ -733,7 +803,7 @@ document.getElementById('openPinModalBtn').onclick = () => {
   openModal("pinModal");
 };
 
-document.getElementById('submitPinChangeBtn').onclick = async () => {
+document.getElementById('submitPinChangeBtn').onclick = () => {
   const oldPin = document.getElementById("oldPinInput").value.trim();
   const newPin = document.getElementById("newPinInput").value.trim();
 
@@ -744,16 +814,10 @@ document.getElementById('submitPinChangeBtn').onclick = async () => {
     return showToast("Yangi PIN kamida 4 ta raqam bo'lsin!");
   }
 
-  try {
-    if (!currentUser) return;
-    const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
-    await setDoc(settingsDocRef, { pin: newPin }, { merge: true });
-    storedPin = newPin;
-    closeModal("pinModal");
-    showToast("PIN kod muvaffaqiyatli yangilandi!");
-  } catch (err) {
-    showToast("PIN kodni saqlashda xatolik yuz berdi");
-  }
+  storedPin = newPin;
+  syncDataToCloud();
+  closeModal("pinModal");
+  showToast("PIN kod bulutda yangilandi!");
 };
 
 function openStudentModal(id = null) {
@@ -789,7 +853,7 @@ function openStudentModal(id = null) {
 
 document.getElementById('addStudentBtn').onclick = () => openStudentModal();
 
-document.getElementById('submitStudentBtn').onclick = async () => {
+document.getElementById('submitStudentBtn').onclick = () => {
   const id = document.getElementById("editStudentId").value;
   const name = document.getElementById("inputStudentName").value.trim();
   const target = parseFloat(document.getElementById("inputStudentTarget").value);
@@ -798,39 +862,36 @@ document.getElementById('submitStudentBtn').onclick = async () => {
 
   if (!name) return showToast("Shogird ismini kiriting!");
   if (isNaN(target) || target <= 0) return showToast("Jami reja sonini to'g'ri kiriting!");
-  if (!currentUser) return;
 
-  try {
-    if (id) {
-      const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', id);
-      const existing = studentsList.find(s => s.id === id);
-      await setDoc(studentDocRef, {
-        name,
-        target,
-        unit,
-        revision,
-        photo: activeStudentPhoto || existing?.photo || ""
-      }, { merge: true });
+  if (id) {
+    const idx = studentsList.findIndex(s => s.id === id);
+    if (idx !== -1) {
+      studentsList[idx].name = name;
+      studentsList[idx].target = target;
+      studentsList[idx].unit = unit;
+      studentsList[idx].revision = revision;
+      if (activeStudentPhoto) {
+        studentsList[idx].photo = activeStudentPhoto;
+      }
       showToast("Ma'lumot yangilandi!");
-    } else {
-      const newId = 'std_' + Date.now();
-      const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', newId);
-      await setDoc(studentDocRef, {
-        name,
-        target,
-        completed: 0,
-        unit,
-        revision,
-        photo: activeStudentPhoto,
-        history: [],
-        createdAt: Date.now()
-      });
-      showToast("Yangi shogird qo'shildi!");
     }
-    closeModal("studentModal");
-  } catch (err) {
-    showToast("Saqlashda xatolik yuz berdi");
+  } else {
+    const newStudent = {
+      id: 'std_' + Date.now(),
+      name,
+      target,
+      completed: 0,
+      unit,
+      revision,
+      photo: activeStudentPhoto,
+      history: []
+    };
+    studentsList.unshift(newStudent);
+    showToast("Yangi shogird qo'shildi!");
   }
+
+  syncDataToCloud();
+  closeModal("studentModal");
 };
 
 function openDailyModal(id) {
@@ -846,26 +907,27 @@ function openDailyModal(id) {
   openModal("dailyModal");
 }
 
-document.getElementById('submitDailyBtn').onclick = async () => {
+document.getElementById('submitDailyBtn').onclick = () => {
   const id = document.getElementById("dailyStudentId").value;
   const added = parseFloat(document.getElementById("inputDailyAdded").value) || 0;
   const rev = document.getElementById("inputDailyRev").value.trim();
   const note = document.getElementById("inputDailyNote").value.trim();
 
   if (added === 0 && !rev) {
-    return showToast("Yangi dars miqdori yoki takrorlangan qismni kiriting!");
+    return showToast("Dars miqdori yoki takrorlangan qismni kiriting!");
   }
-  if (!currentUser) return;
 
-  const student = studentsList.find(s => s.id === id);
-  if (!student) return;
+  const idx = studentsList.findIndex(s => s.id === id);
+  if (idx === -1) return;
 
-  const newCompleted = Number(((student.completed || 0) + added).toFixed(2));
+  const current = studentsList[idx];
+  const newCompleted = Number(((current.completed || 0) + added).toFixed(2));
+  
   const now = new Date();
   const dateString = now.toLocaleDateString("uz-UZ") + ", " + now.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
 
-  const history = student.history ? [...student.history] : [];
-  history.unshift({
+  if (!current.history) current.history = [];
+  current.history.unshift({
     date: dateString,
     added: added,
     rev: rev || "-",
@@ -873,19 +935,12 @@ document.getElementById('submitDailyBtn').onclick = async () => {
     totalAfter: newCompleted
   });
 
-  try {
-    const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', id);
-    await setDoc(studentDocRef, {
-      completed: newCompleted,
-      revision: rev || student.revision || "",
-      history: history
-    }, { merge: true });
+  current.completed = newCompleted;
+  if (rev) current.revision = rev;
 
-    closeModal("dailyModal");
-    showToast("Vazifa hisoboti saqlandi!");
-  } catch (err) {
-    showToast("Hisobotni saqlashda xatolik");
-  }
+  syncDataToCloud();
+  closeModal("dailyModal");
+  showToast("Vazifa bulutga saqlandi!");
 };
 
 function showHistory(id) {
@@ -920,42 +975,38 @@ function showHistory(id) {
 
 function askDeleteStudent(id, name) {
   pendingDeleteId = id;
-  document.getElementById("confirmMessage").innerText = `"${name}" shogirdi va barcha dars hisoboti butunlay o'chiriladi.`;
+  document.getElementById("confirmMessage").innerText = `"${name}" shogirdi va barcha hisoboti butunlay o'chiriladi.`;
   openModal("confirmModal");
 }
 
-document.getElementById('confirmDeleteBtn').onclick = async () => {
-  if (!pendingDeleteId || !currentUser) return;
-  try {
-    const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', pendingDeleteId);
-    await deleteDoc(studentDocRef);
-    closeModal("confirmModal");
-    pendingDeleteId = null;
-    showToast("O'chirildi!");
-  } catch (err) {
-    showToast("O'chirishda xatolik yuz berdi");
-  }
+document.getElementById('confirmDeleteBtn').onclick = () => {
+  if (!pendingDeleteId) return;
+  studentsList = studentsList.filter(s => s.id !== pendingDeleteId);
+  syncDataToCloud();
+  closeModal("confirmModal");
+  pendingDeleteId = null;
+  showToast("O'chirildi!");
 };
 
 document.getElementById('searchInput').addEventListener('input', () => renderApp());
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
+  
+  loadLocally();
+  syncAdminUI();
+  
+  // Firebase tizimini ishga tushirish
+  initFirebaseSystem();
 
-  try {
-    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-      const cred = await signInWithCustomToken(auth, __initial_auth_token);
-      currentUser = cred.user;
+  window.addEventListener('focus', () => {
+    if (db && currentUser) {
+      // Qayta fokuslanganda tekshirish
     } else {
-      const cred = await signInAnonymously(auth);
-      currentUser = cred.user;
+      fallbackToRTDB();
     }
-    setupCloudListeners();
-  } catch (authError) {
-    currentUser = { uid: "guest-user" };
-    setupCloudListeners();
-  }
+  });
 });
 </script>
 </body>
