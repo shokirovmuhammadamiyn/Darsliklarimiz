@@ -4,13 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Qur'on Vazifalari & Hifz Nazorati</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
     tailwind.config = {
@@ -28,10 +25,6 @@
               700: '#047857',
               800: '#065f46',
               900: '#064e3b',
-            },
-            gold: {
-              500: '#d97706',
-              600: '#b45309',
             }
           }
         }
@@ -39,7 +32,6 @@
     }
   </script>
   <style>
-    /* Maxsus animatsiya va yordamchi stillar */
     body {
       -webkit-tap-highlight-color: transparent;
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -53,33 +45,52 @@
 
 <div class="max-w-3xl mx-auto px-3 pt-4 sm:pt-6">
 
-  <!-- Yuqori Asosiy Banner -->
-  <header class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-2xl p-5 shadow-lg shadow-emerald-950/20 text-center mb-4 relative overflow-hidden border border-emerald-600/30">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-200 text-xs font-bold tracking-wide uppercase mb-2">
+  <!-- Yuqori Asosiy Banner & Sanagich -->
+  <header class="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-3xl p-5 sm:p-6 shadow-xl shadow-emerald-950/20 text-center mb-4 relative overflow-hidden border border-emerald-600/30">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-200 text-xs font-bold tracking-wide uppercase mb-2.5">
       <span>🌙</span> Ramazon-2027 Rejasi
     </div>
     <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mb-4">Qur'on Vazifalari & Hifz Nazorati</h1>
 
     <!-- Qolgan vaqt sanagichi -->
     <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto">
-      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-2 text-center">
-        <span id="cdDays" class="block text-lg sm:text-xl font-black text-amber-300">0</span>
-        <span class="block text-[10px] font-bold text-emerald-200 uppercase">Kun</span>
+      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 sm:p-2.5 text-center">
+        <span id="cdDays" class="block text-lg sm:text-2xl font-black text-amber-300">0</span>
+        <span class="block text-[10px] font-bold text-emerald-200 uppercase tracking-wider">Kun</span>
       </div>
-      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-2 text-center">
-        <span id="cdHours" class="block text-lg sm:text-xl font-black text-amber-300">0</span>
-        <span class="block text-[10px] font-bold text-emerald-200 uppercase">Soat</span>
+      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 sm:p-2.5 text-center">
+        <span id="cdHours" class="block text-lg sm:text-2xl font-black text-amber-300">0</span>
+        <span class="block text-[10px] font-bold text-emerald-200 uppercase tracking-wider">Soat</span>
       </div>
-      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-2 text-center">
-        <span id="cdMins" class="block text-lg sm:text-xl font-black text-amber-300">0</span>
-        <span class="block text-[10px] font-bold text-emerald-200 uppercase">Daqiqa</span>
+      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 sm:p-2.5 text-center">
+        <span id="cdMins" class="block text-lg sm:text-2xl font-black text-amber-300">0</span>
+        <span class="block text-[10px] font-bold text-emerald-200 uppercase tracking-wider">Daqiqa</span>
       </div>
-      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-2 text-center">
-        <span id="cdSecs" class="block text-lg sm:text-xl font-black text-amber-300">0</span>
-        <span class="block text-[10px] font-bold text-emerald-200 uppercase">Soniya</span>
+      <div class="bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-2 sm:p-2.5 text-center">
+        <span id="cdSecs" class="block text-lg sm:text-2xl font-black text-amber-300">0</span>
+        <span class="block text-[10px] font-bold text-emerald-200 uppercase tracking-wider">Soniya</span>
       </div>
     </div>
+
+    <!-- Onlayn Sinxronlash Holati -->
+    <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-emerald-200/90">
+      <span id="syncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span id="syncStatusText">Bulutli xotira ulanmoqda...</span>
+    </div>
   </header>
+
+  <!-- Planshetdagi eski ma'lumotlarni ko'chirish taklifi barchaga ko'rinmaydi, faqat mavjud bo'lsa chiqadi -->
+  <div id="migrationAlert" class="hidden bg-amber-50 border border-amber-300 rounded-2xl p-3.5 mb-4 shadow-sm">
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <div class="flex items-center gap-2 text-amber-900 text-xs font-bold">
+        <i class="fa-solid fa-cloud-arrow-up text-amber-600 text-base"></i>
+        <span>Ushbu qurilmada saqlangan shogirdlar topildi! Ularni bulutga ko'chirasizmi?</span>
+      </div>
+      <button id="runMigrationBtn" class="bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs px-3 py-2 rounded-xl transition shadow-sm flex items-center gap-1">
+        <i class="fa-solid fa-upload"></i> Hammasini Bulutga Yuklash
+      </button>
+    </div>
+  </div>
 
   <!-- Boshqaruv qatori -->
   <div class="flex gap-2 mb-4">
@@ -89,33 +100,31 @@
         type="text" 
         id="searchInput" 
         placeholder="Shogird ismini qidirish..." 
-        oninput="renderApp()"
-        class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 shadow-sm transition"
+        class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-sm transition"
       >
     </div>
     <button 
       id="authBtn" 
-      onclick="handleAuthToggle()" 
-      class="px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-brand-900 hover:bg-brand-800 text-white"
+      class="px-4 py-2.5 rounded-2xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-brand-900 hover:bg-brand-800 text-white"
     >
       <i class="fa-solid fa-lock text-xs"></i> <span>Ustoz Kirishi</span>
     </button>
   </div>
 
-  <!-- Ustoz paneli (Faqat kirilganda ko'rinadi) -->
-  <div id="adminPanel" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-3 mb-4 shadow-sm flex-wrap items-center justify-between gap-2.5">
-    <div class="flex items-center gap-2 text-brand-900 font-bold text-sm">
+  <!-- Ustoz paneli -->
+  <div id="adminPanel" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-3 mb-4 shadow-sm flex flex-wrap items-center justify-between gap-2.5">
+    <div class="flex items-center gap-2 text-brand-900 font-bold text-xs sm:text-sm">
       <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
       <span>Ustoz rejimi faol</span>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <button onclick="openStudentModal()" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold px-3 py-2 rounded-lg shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="addStudentBtn" class="bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
         <i class="fa-solid fa-user-plus"></i> Yangi Shogird
       </button>
-      <button onclick="openModal('pinModal')" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold px-3 py-2 rounded-lg shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="openPinModalBtn" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
         <i class="fa-solid fa-key"></i> PIN o'zgartirish
       </button>
-      <button onclick="logoutAdmin()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-2 rounded-lg shadow-sm transition active:scale-95 flex items-center gap-1">
+      <button id="logoutBtn" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1">
         <i class="fa-solid fa-right-from-bracket"></i> Chiqish
       </button>
     </div>
@@ -123,14 +132,17 @@
 
   <!-- Shogirdlar ro'yxati -->
   <div id="studentsContainer" class="space-y-3.5">
-    <!-- Shogird kartalari JS orqali joylanadi -->
+    <div class="bg-white rounded-2xl p-10 text-center text-slate-400 border border-slate-200 shadow-sm">
+      <i class="fa-solid fa-spinner fa-spin text-3xl mb-2 text-brand-600"></i>
+      <p class="font-bold text-sm text-slate-600">Bulutdagi ma'lumotlar yuklanmoqda...</p>
+    </div>
   </div>
 
 </div>
 
 <!-- 1. Ustoz Kirish Modali -->
 <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-100">
+  <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl border border-slate-100">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center font-bold">
@@ -138,7 +150,7 @@
         </div>
         <h3 class="font-extrabold text-slate-800 text-base">Ustoz Kirishi</h3>
       </div>
-      <button onclick="closeModal('loginModal')" class="text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg">&times;</button>
+      <button class="modal-close-btn text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg" data-target="loginModal">&times;</button>
     </div>
     <div class="mb-4">
       <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Maxfiy PIN Kod</label>
@@ -147,658 +159,804 @@
         id="loginPinInput" 
         inputmode="numeric" 
         placeholder="PIN kodni kiriting" 
-        class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-center text-lg tracking-widest font-bold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition"
+        class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-center text-lg tracking-widest font-bold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition"
       >
     </div>
     <div class="flex gap-2">
-      <button onclick="closeModal('loginModal')" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Bekor</button>
-      <button onclick="submitAdminLogin()" class="flex-1 py-2.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-xl text-sm transition shadow-sm">Kirish</button>
+      <button class="modal-close-btn flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-sm transition" data-target="loginModal">Bekor</button>
+      <button id="submitLoginBtn" class="flex-1 py-2.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-2xl text-sm transition shadow-sm">Kirish</button>
     </div>
   </div>
 </div>
 
 <!-- 2. PIN Kodni O'zgartirish Modali -->
 <div id="pinModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-100">
+  <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl border border-slate-100">
     <div class="flex items-center justify-between mb-4">
       <h3 class="font-extrabold text-slate-800 text-base">PIN Kodni Yangilash</h3>
-      <button onclick="closeModal('pinModal')" class="text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg">&times;</button>
+      <button class="modal-close-btn text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg" data-target="pinModal">&times;</button>
     </div>
     <div class="space-y-3 mb-4">
       <div>
         <label class="block text-xs font-bold text-slate-500 mb-1">Eski PIN kod</label>
-        <input type="password" id="oldPinInput" inputmode="numeric" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <input type="password" id="oldPinInput" inputmode="numeric" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-500 mb-1">Yangi PIN kod (kamida 4 ta raqam)</label>
-        <input type="password" id="newPinInput" inputmode="numeric" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <input type="password" id="newPinInput" inputmode="numeric" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
       </div>
     </div>
     <div class="flex gap-2">
-      <button onclick="closeModal('pinModal')" class="flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-xl text-sm">Bekor</button>
-      <button onclick="submitChangePin()" class="flex-1 py-2.5 bg-brand-700 text-white font-bold rounded-xl text-sm">Saqlash</button>
+      <button class="modal-close-btn flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-2xl text-sm" data-target="pinModal">Bekor</button>
+      <button id="submitPinChangeBtn" class="flex-1 py-2.5 bg-brand-700 text-white font-bold rounded-2xl text-sm">Saqlash</button>
     </div>
   </div>
 </div>
 
 <!-- 3. Shogird Qo'shish / Tahrirlash Modali -->
 <div id="studentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
+  <div class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
     <div class="flex items-center justify-between mb-4">
       <h3 id="studentModalTitle" class="font-extrabold text-slate-800 text-base">Shogird Ma'lumotlari</h3>
-      <button onclick="closeModal('studentModal')" class="text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg">&times;</button>
+      <button class="modal-close-btn text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg" data-target="studentModal">&times;</button>
     </div>
     <input type="hidden" id="editStudentId">
     
     <div class="space-y-3.5 mb-5">
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Shogird Ismi *</label>
-        <input type="text" id="inputStudentName" placeholder="Masalan: Muhammadamin" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+        <input type="text" id="inputStudentName" placeholder="Masalan: Muhammadamin" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
       </div>
 
       <div class="grid grid-cols-2 gap-2">
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Jami reja (son) *</label>
-          <input type="number" id="inputStudentTarget" placeholder="410" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+          <input type="number" id="inputStudentTarget" placeholder="410" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Birligi</label>
-          <input type="text" id="inputStudentUnit" value="bet" placeholder="bet" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+          <input type="text" id="inputStudentUnit" value="bet" placeholder="bet" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
         </div>
       </div>
 
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Takrorlash rejasi</label>
-        <input type="text" id="inputStudentRevision" placeholder="Masalan: Har kuni yarim pora takror" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
+        <input type="text" id="inputStudentRevision" placeholder="Masalan: Har kuni yarim poradan takror" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white">
       </div>
 
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Rasmi (ixtiyoriy)</label>
-        <input type="file" id="inputStudentPhoto" accept="image/*" onchange="handlePhotoUpload(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer">
+        <input type="file" id="inputStudentPhoto" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer">
         <div id="photoPreviewContainer" class="hidden mt-2 flex items-center gap-3">
           <img id="photoPreviewImg" class="w-12 h-12 rounded-full object-cover border-2 border-brand-500">
-          <button type="button" onclick="clearPhoto()" class="text-xs text-rose-600 font-semibold hover:underline">Rasmni tozalash</button>
+          <button type="button" id="clearPhotoBtn" class="text-xs text-rose-600 font-semibold hover:underline">Rasmni tozalash</button>
         </div>
       </div>
     </div>
 
     <div class="flex gap-2">
-      <button onclick="closeModal('studentModal')" class="flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-xl text-sm">Bekor</button>
-      <button onclick="submitStudentForm()" class="flex-1 py-2.5 bg-brand-700 text-white font-bold rounded-xl text-sm shadow-sm">Saqlash</button>
+      <button class="modal-close-btn flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-2xl text-sm" data-target="studentModal">Bekor</button>
+      <button id="submitStudentBtn" class="flex-1 py-2.5 bg-brand-700 text-white font-bold rounded-2xl text-sm shadow-sm">Saqlash</button>
     </div>
   </div>
 </div>
 
-<!-- 4. Dars & Takror Kiritish Modali (Qo'lda yozish) -->
+<!-- 4. Dars & Takror Kiritish Modali -->
 <div id="dailyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-100">
+  <div class="bg-white rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-2xl border border-slate-100">
     <div class="flex items-center justify-between mb-3">
       <h3 id="dailyModalTitle" class="font-extrabold text-slate-800 text-base">Dars & Takror Kiritish</h3>
-      <button onclick="closeModal('dailyModal')" class="text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg">&times;</button>
+      <button class="modal-close-btn text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg" data-target="dailyModal">&times;</button>
     </div>
     <input type="hidden" id="dailyStudentId">
     
     <div class="space-y-3 mb-4">
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Bugun o'tilgan dars miqdori (raqam)</label>
-        <input type="number" step="any" id="inputDailyAdded" placeholder="Masalan: 2 yoki 1.5" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <input type="number" step="any" id="inputDailyAdded" placeholder="Masalan: 2 yoki 1.5" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Bugungi takrorlangan qism</label>
-        <input type="text" id="inputDailyRev" placeholder="Masalan: 2-pora qaytarildi" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <input type="text" id="inputDailyRev" placeholder="Masalan: 2-pora qaytarildi" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-600 mb-1">Qo'shimcha izoh</label>
-        <input type="text" id="inputDailyNote" placeholder="Darsni yaxshi topshirdi..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
+        <input type="text" id="inputDailyNote" placeholder="Darsni yaxshi topshirdi..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white">
       </div>
     </div>
 
     <div class="flex gap-2">
-      <button onclick="closeModal('dailyModal')" class="flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-xl text-sm">Bekor</button>
-      <button onclick="submitDailyProgress()" class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-sm shadow-sm transition">Saqlash</button>
+      <button class="modal-close-btn flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-2xl text-sm" data-target="dailyModal">Bekor</button>
+      <button id="submitDailyBtn" class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-2xl text-sm shadow-sm transition">Saqlash</button>
     </div>
   </div>
 </div>
 
 <!-- 5. Tarix & Hisobot Modali -->
 <div id="historyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-lg w-full p-5 shadow-2xl border border-slate-100 max-h-[85vh] flex flex-col">
+  <div class="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-100 max-h-[85vh] flex flex-col">
     <div class="flex items-center justify-between pb-3 border-b border-slate-100">
       <div>
         <h3 id="historyModalTitle" class="font-extrabold text-slate-800 text-base">Shogird Tarixi</h3>
         <p class="text-xs text-slate-500 font-medium">Topshirilgan barcha darslar va takrorlar</p>
       </div>
-      <button onclick="closeModal('historyModal')" class="text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg">&times;</button>
+      <button class="modal-close-btn text-slate-400 hover:text-slate-600 text-lg w-7 h-7 flex items-center justify-center rounded-lg" data-target="historyModal">&times;</button>
     </div>
     
-    <div id="historyModalBody" class="flex-1 overflow-y-auto py-3 space-y-2.5">
-      <!-- Tarix yozuvlari JS orqali -->
-    </div>
+    <div id="historyModalBody" class="flex-1 overflow-y-auto py-3 space-y-2.5"></div>
 
     <div class="pt-3 border-t border-slate-100 flex justify-end">
-      <button onclick="closeModal('historyModal')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm">Yopish</button>
+      <button class="modal-close-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-sm" data-target="historyModal">Yopish</button>
     </div>
   </div>
 </div>
 
-<!-- 6. O'chirishni Tasdiqlash Modali (Alert/Confirm o'rniga) -->
+<!-- 6. O'chirishni Tasdiqlash Modali -->
 <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-xs w-full p-5 shadow-2xl border border-slate-100 text-center">
+  <div class="bg-white rounded-3xl max-w-xs w-full p-5 shadow-2xl border border-slate-100 text-center">
     <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">
       <i class="fa-solid fa-trash"></i>
     </div>
     <h3 class="font-extrabold text-slate-800 text-base mb-1">O'chirilsinmi?</h3>
     <p id="confirmMessage" class="text-xs text-slate-500 mb-4 font-medium">Ushbu shogird va uning barcha hisoboti butunlay o'chiriladi.</p>
     <div class="flex gap-2">
-      <button onclick="closeModal('confirmModal')" class="flex-1 py-2 bg-slate-100 text-slate-700 font-bold rounded-xl text-xs">Bekor</button>
-      <button id="confirmBtn" class="flex-1 py-2 bg-rose-600 text-white font-bold rounded-xl text-xs">O'chirish</button>
+      <button class="modal-close-btn flex-1 py-2 bg-slate-100 text-slate-700 font-bold rounded-xl text-xs" data-target="confirmModal">Bekor</button>
+      <button id="confirmDeleteBtn" class="flex-1 py-2 bg-rose-600 text-white font-bold rounded-xl text-xs">O'chirish</button>
     </div>
   </div>
 </div>
 
 <!-- Bildirishnoma (Toast) -->
-<div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl text-xs font-bold hidden z-50 transition-all border border-slate-700">
+<div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur text-white px-4 py-2.5 rounded-2xl shadow-xl text-xs font-bold hidden z-50 transition-all border border-slate-700">
   <span id="toastMsg">Xabar</span>
 </div>
 
-<script>
-  /* 
-    Xotira Kalitlari va Asosiy O'zgaruvchilar 
-  */
-  const STORAGE_KEY_STUDENTS = "quran_app_data_v7";
-  const STORAGE_KEY_PIN = "quran_app_pin_v7";
-  const STORAGE_KEY_ADMIN = "quran_app_is_admin_v7";
-  const TARGET_RAMADAN_DATE = new Date("2027-02-08T00:00:00").getTime();
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-  let isAdmin = localStorage.getItem(STORAGE_KEY_ADMIN) === "true";
-  let activeStudentPhoto = "";
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'quran-ramadan-2027';
+const firebaseConfig = typeof __firebase_config !== 'undefined' 
+  ? JSON.parse(__firebase_config) 
+  : {
+      apiKey: "AIzaSyQuranAppLiveDemoDefaultKeyForWebClient",
+      authDomain: "quran-ramadan-live.firebaseapp.com",
+      projectId: "quran-ramadan-live",
+      storageBucket: "quran-ramadan-live.appspot.com",
+      messagingSenderId: "9876543210",
+      appId: "1:9876543210:web:abcdef123456"
+    };
 
-  /* PIN-kod boshqaruvi */
-  function getStoredPin() {
-    return localStorage.getItem(STORAGE_KEY_PIN) || "1234";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+const TARGET_RAMADAN_DATE = new Date("2027-02-08T00:00:00").getTime();
+
+let currentUser = null;
+let isAdmin = false;
+let storedPin = "1234";
+let studentsList = [];
+let activeStudentPhoto = "";
+let pendingDeleteId = null;
+
+function showToast(msg) {
+  const box = document.getElementById("toastBox");
+  const text = document.getElementById("toastMsg");
+  text.innerText = msg;
+  box.classList.remove("hidden");
+  setTimeout(() => {
+    box.classList.add("hidden");
+  }, 2800);
+}
+
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add("modal-active");
+}
+
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("modal-active");
+}
+
+function updateCountdown() {
+  const now = Date.now();
+  const diff = TARGET_RAMADAN_DATE - now;
+
+  const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+  const hours = Math.max(0, Math.floor((diff / (1000 * 60 * 60)) % 24));
+  const mins = Math.max(0, Math.floor((diff / (1000 * 60)) % 60));
+  const secs = Math.max(0, Math.floor((diff / 1000) % 60));
+
+  document.getElementById("cdDays").innerText = days;
+  document.getElementById("cdHours").innerText = hours;
+  document.getElementById("cdMins").innerText = mins;
+  document.getElementById("cdSecs").innerText = secs;
+
+  return days > 0 ? days : 1;
+}
+
+function syncAdminUI() {
+  const authBtn = document.getElementById("authBtn");
+  const adminPanel = document.getElementById("adminPanel");
+
+  if (isAdmin) {
+    authBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket text-xs"></i> <span>Chiqish</span>';
+    authBtn.className = "px-4 py-2.5 rounded-2xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-rose-600 hover:bg-rose-700 text-white";
+    adminPanel.classList.remove("hidden");
+    adminPanel.classList.add("flex");
+  } else {
+    authBtn.innerHTML = '<i class="fa-solid fa-lock text-xs"></i> <span>Ustoz Kirishi</span>';
+    authBtn.className = "px-4 py-2.5 rounded-2xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-brand-900 hover:bg-brand-800 text-white";
+    adminPanel.classList.add("hidden");
+    adminPanel.classList.remove("flex");
   }
+  renderApp();
+}
 
-  /* Shogirdlar ro'yxatini yuklash */
-  function getStudents() {
-    try {
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY_STUDENTS));
-      if (Array.isArray(data) && data.length > 0) {
-        return data;
+function checkLocalStorageForOldData() {
+  try {
+    const raw = localStorage.getItem("quran_students_v3") || localStorage.getItem("quran_students_v2");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        document.getElementById("migrationAlert").classList.remove("hidden");
       }
-    } catch(e) {}
-    
-    // Standart boshlang'ich ma'lumot (bo'sh bo'lmasligi uchun)
-    const initialList = [{
-      id: "std_default",
-      name: "Muhammadamin",
-      target: 410,
-      completed: 0,
-      unit: "bet",
-      revision: "Har kuni yarim poradan takror",
-      photo: "",
-      history: []
-    }];
-    localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(initialList));
-    return initialList;
-  }
+    }
+  } catch (e) {}
+}
 
-  /* Ma'lumotlarni saqlash */
-  function saveStudents(list) {
-    localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(list));
+document.getElementById("runMigrationBtn").onclick = async () => {
+  try {
+    const raw = localStorage.getItem("quran_students_v3") || localStorage.getItem("quran_students_v2");
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    showToast("Bulutga yuklanmoqda...");
+
+    for (const st of parsed) {
+      const docId = st.id ? 'std_' + String(st.id) : 'std_' + Date.now() + Math.floor(Math.random() * 100);
+      await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'students', docId), {
+        name: st.name || "Shogird",
+        target: Number(st.target) || 410,
+        completed: Number(st.completed) || 0,
+        unit: st.unit || "bet",
+        revision: st.revision || "",
+        photo: st.photo || "",
+        history: st.history || [],
+        createdAt: Date.now()
+      }, { merge: true });
+    }
+
+    document.getElementById("migrationAlert").classList.add("hidden");
+    showToast("Barcha eski shogirdlar bulutga ko'chirildi!");
+  } catch (err) {
+    showToast("Ko'chirishda xatolik yuz berdi");
+  }
+};
+
+function setupCloudListeners() {
+  if (!currentUser) return;
+
+  const syncStatusText = document.getElementById("syncStatusText");
+  const syncDot = document.getElementById("syncDot");
+
+  const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
+  onSnapshot(settingsDocRef, (snap) => {
+    if (snap.exists() && snap.data().pin) {
+      storedPin = snap.data().pin;
+    } else {
+      setDoc(settingsDocRef, { pin: "1234" }, { merge: true }).catch(() => {});
+    }
+  });
+
+  const studentsColRef = collection(db, 'artifacts', appId, 'public', 'data', 'students');
+  onSnapshot(studentsColRef, (snapshot) => {
+    syncStatusText.innerText = "Bulutli xotira bilan bog'langan (Jonli)";
+    syncDot.className = "w-2 h-2 rounded-full bg-emerald-400";
+
+    const list = [];
+    snapshot.forEach(docSnap => {
+      list.push({ id: docSnap.id, ...docSnap.data() });
+    });
+
+    list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+    if (list.length === 0 && snapshot.empty) {
+      const initialStudents = [
+        {
+          id: 'std_1',
+          name: "محمد أمين",
+          target: 410,
+          completed: 0,
+          unit: "bet",
+          revision: "1 pora",
+          photo: "",
+          history: [],
+          createdAt: Date.now() - 3000
+        },
+        {
+          id: 'std_2',
+          name: "محمدی",
+          target: 380,
+          completed: 0,
+          unit: "bet",
+          revision: "6 bet",
+          photo: "",
+          history: [],
+          createdAt: Date.now() - 2000
+        },
+        {
+          id: 'std_3',
+          name: "محمد صفی",
+          target: 78,
+          completed: 0,
+          unit: "bet",
+          revision: "7 bet",
+          photo: "",
+          history: [],
+          createdAt: Date.now() - 1000
+        }
+      ];
+
+      initialStudents.forEach(st => {
+        setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'students', st.id), st).catch(() => {});
+      });
+
+      studentsList = initialStudents;
+    } else {
+      studentsList = list;
+    }
+
     renderApp();
+    checkLocalStorageForOldData();
+  }, (error) => {
+    console.error("Firestore error:", error);
+    syncStatusText.innerText = "Mahalliy rejimda ishlamoqda";
+    syncDot.className = "w-2 h-2 rounded-full bg-amber-400";
+  });
+}
+
+function renderApp() {
+  const container = document.getElementById("studentsContainer");
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const daysLeft = updateCountdown();
+
+  let filtered = studentsList;
+  if (query) {
+    filtered = filtered.filter(s => s.name && s.name.toLowerCase().includes(query));
   }
 
-  /* Toast bildirishnoma ko'rsatish */
-  function showToast(msg) {
-    const box = document.getElementById("toastBox");
-    const text = document.getElementById("toastMsg");
-    text.innerText = msg;
-    box.classList.remove("hidden");
-    setTimeout(() => {
-      box.classList.add("hidden");
-    }, 2800);
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="bg-white rounded-3xl p-8 text-center text-slate-400 border border-slate-200 shadow-sm">
+        <i class="fa-solid fa-user-slash text-3xl mb-2 text-slate-300"></i>
+        <p class="font-bold text-sm">Shogird topilmadi.</p>
+      </div>
+    `;
+    return;
   }
 
-  /* Modallarni ochish va yopish */
-  function openModal(id) {
-    const el = document.getElementById(id);
-    if (el) el.classList.add("modal-active");
-  }
+  container.innerHTML = filtered.map(student => {
+    const target = Number(student.target) || 1;
+    const completed = Number(student.completed) || 0;
+    const remaining = Math.max(0, target - completed);
+    const dailyNorm = (remaining / daysLeft).toFixed(2);
+    const percent = Math.min(100, (completed / target) * 100).toFixed(1);
+    const unit = student.unit || "bet";
 
-  function closeModal(id) {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove("modal-active");
-  }
+    const avatarHtml = student.photo 
+      ? `<img src="${student.photo}" class="w-12 h-12 rounded-full object-cover border-2 border-brand-500 shadow-sm shrink-0">` 
+      : `<div class="w-12 h-12 rounded-full bg-brand-50 text-brand-800 border-2 border-brand-500 font-extrabold text-lg flex items-center justify-center shrink-0">${(student.name || 'S').charAt(0).toUpperCase()}</div>`;
 
-  /* Ramazongacha vaqt hisobi */
-  function updateCountdown() {
-    const now = Date.now();
-    const diff = TARGET_RAMADAN_DATE - now;
+    return `
+      <div class="bg-white border border-slate-200 rounded-3xl p-4 sm:p-5 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center justify-between gap-2 flex-wrap">
+          <div class="flex items-center gap-3 cursor-pointer view-history-btn" data-id="${student.id}">
+            ${avatarHtml}
+            <div>
+              <h3 class="font-extrabold text-slate-800 text-base flex items-center gap-1.5">
+                ${student.name}
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Faol</span>
+              </h3>
+              <p class="text-xs font-semibold text-brand-600 hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-chart-line text-[10px]"></i> Tarix & Hisobotni ko'rish
+              </p>
+            </div>
+          </div>
 
-    const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-    const hours = Math.max(0, Math.floor((diff / (1000 * 60 * 60)) % 24));
-    const mins = Math.max(0, Math.floor((diff / (1000 * 60)) % 60));
-    const secs = Math.max(0, Math.floor((diff / 1000) % 60));
+          ${isAdmin ? `
+            <div class="flex items-center gap-1.5">
+              <button class="edit-student-btn px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition" data-id="${student.id}" title="Tahrirlash">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="ask-delete-btn px-2.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs rounded-xl transition" data-id="${student.id}" data-name="${student.name}" title="O'chirish">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          ` : ''}
+        </div>
 
-    document.getElementById("cdDays").innerText = days;
-    document.getElementById("cdHours").innerText = hours;
-    document.getElementById("cdMins").innerText = mins;
-    document.getElementById("cdSecs").innerText = secs;
+        <div class="mt-3.5 mb-2">
+          <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/60">
+            <div class="bg-gradient-to-r from-brand-600 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: ${percent}%;"></div>
+          </div>
+        </div>
 
-    return days > 0 ? days : 1;
-  }
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-50 border border-slate-200/80 rounded-2xl p-2.5 mt-2 text-center">
+          <div>
+            <span class="block text-[10px] font-bold text-slate-400 uppercase">Jami Reja</span>
+            <span class="block text-xs sm:text-sm font-extrabold text-slate-800">${target} ${unit}</span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-bold text-slate-400 uppercase">O'qildi</span>
+            <span class="block text-xs sm:text-sm font-extrabold text-brand-600">${completed} ${unit}</span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-bold text-slate-400 uppercase">Qoldi</span>
+            <span class="block text-xs sm:text-sm font-extrabold text-slate-700">${remaining.toFixed(1)} ${unit}</span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-bold text-slate-400 uppercase">Kunlik Me'yor</span>
+            <span class="block text-xs sm:text-sm font-extrabold text-amber-600">${dailyNorm} / kun</span>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <span class="block text-[10px] font-bold text-slate-400 uppercase">Bajarildi</span>
+            <span class="block text-xs sm:text-sm font-extrabold text-emerald-600">${percent}%</span>
+          </div>
+        </div>
 
-  /* Ustoz Rejimi Tekshiruvi */
-  function handleAuthToggle() {
-    if (isAdmin) {
-      logoutAdmin();
-    } else {
-      document.getElementById("loginPinInput").value = "";
-      openModal("loginModal");
-      setTimeout(() => document.getElementById("loginPinInput").focus(), 150);
-    }
-  }
+        ${student.revision ? `
+          <div class="mt-2.5 bg-amber-50/80 border border-amber-200/70 rounded-2xl p-2.5 flex items-start gap-2 text-xs text-amber-900">
+            <i class="fa-solid fa-arrows-rotate text-amber-600 mt-0.5"></i>
+            <div>
+              <strong class="font-bold">Takror:</strong> ${student.revision}
+            </div>
+          </div>
+        ` : ''}
 
-  function submitAdminLogin() {
-    const pin = document.getElementById("loginPinInput").value.trim();
-    if (pin === getStoredPin()) {
-      isAdmin = true;
-      localStorage.setItem(STORAGE_KEY_ADMIN, "true");
-      closeModal("loginModal");
-      syncAdminUI();
-      showToast("Xush kelibsiz, Ustoz!");
-    } else {
-      showToast("PIN kod noto'g'ri!");
-    }
-  }
+        <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
+          <button class="view-history-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition flex items-center gap-1.5" data-id="${student.id}">
+            <i class="fa-solid fa-list-check"></i> Hisobot
+          </button>
 
-  function logoutAdmin() {
+          ${isAdmin ? `
+            <button class="open-daily-btn px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5" data-id="${student.id}">
+              <i class="fa-solid fa-pen"></i> Dars & Takror kiritish
+            </button>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  attachDynamicCardEvents();
+}
+
+function attachDynamicCardEvents() {
+  document.querySelectorAll('.view-history-btn').forEach(btn => {
+    btn.onclick = () => showHistory(btn.getAttribute('data-id'));
+  });
+  document.querySelectorAll('.open-daily-btn').forEach(btn => {
+    btn.onclick = () => openDailyModal(btn.getAttribute('data-id'));
+  });
+  document.querySelectorAll('.edit-student-btn').forEach(btn => {
+    btn.onclick = () => openStudentModal(btn.getAttribute('data-id'));
+  });
+  document.querySelectorAll('.ask-delete-btn').forEach(btn => {
+    btn.onclick = () => askDeleteStudent(btn.getAttribute('data-id'), btn.getAttribute('data-name'));
+  });
+}
+
+document.querySelectorAll('.modal-close-btn').forEach(btn => {
+  btn.onclick = () => closeModal(btn.getAttribute('data-target'));
+});
+
+document.getElementById('inputStudentPhoto').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement("canvas");
+      const MAX_SIZE = 140;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
+        }
+      } else {
+        if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      activeStudentPhoto = canvas.toDataURL("image/jpeg", 0.85);
+      document.getElementById("photoPreviewImg").src = activeStudentPhoto;
+      document.getElementById("photoPreviewContainer").classList.remove("hidden");
+    };
+    img.src = evt.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+document.getElementById('clearPhotoBtn').onclick = () => {
+  activeStudentPhoto = "";
+  document.getElementById("inputStudentPhoto").value = "";
+  document.getElementById("photoPreviewContainer").classList.add("hidden");
+};
+
+document.getElementById('authBtn').onclick = () => {
+  if (isAdmin) {
     isAdmin = false;
-    localStorage.removeItem(STORAGE_KEY_ADMIN);
     syncAdminUI();
     showToast("Ustoz rejimidan chiqildi.");
+  } else {
+    document.getElementById("loginPinInput").value = "";
+    openModal("loginModal");
+    setTimeout(() => document.getElementById("loginPinInput").focus(), 150);
+  }
+};
+
+document.getElementById('submitLoginBtn').onclick = () => {
+  const enteredPin = document.getElementById("loginPinInput").value.trim();
+  if (enteredPin === storedPin) {
+    isAdmin = true;
+    closeModal("loginModal");
+    syncAdminUI();
+    showToast("Xush kelibsiz, Ustoz!");
+  } else {
+    showToast("PIN kod noto'g'ri!");
+  }
+};
+
+document.getElementById('logoutBtn').onclick = () => {
+  isAdmin = false;
+  syncAdminUI();
+  showToast("Ustoz rejimidan chiqildi.");
+};
+
+document.getElementById('openPinModalBtn').onclick = () => {
+  document.getElementById("oldPinInput").value = "";
+  document.getElementById("newPinInput").value = "";
+  openModal("pinModal");
+};
+
+document.getElementById('submitPinChangeBtn').onclick = async () => {
+  const oldPin = document.getElementById("oldPinInput").value.trim();
+  const newPin = document.getElementById("newPinInput").value.trim();
+
+  if (oldPin !== storedPin) {
+    return showToast("Eski PIN kod noto'g'ri!");
+  }
+  if (newPin.length < 4) {
+    return showToast("Yangi PIN kamida 4 ta raqam bo'lsin!");
   }
 
-  function submitChangePin() {
-    const oldPin = document.getElementById("oldPinInput").value.trim();
-    const newPin = document.getElementById("newPinInput").value.trim();
-
-    if (oldPin !== getStoredPin()) {
-      return showToast("Eski PIN kod noto'g'ri!");
-    }
-    if (newPin.length < 4) {
-      return showToast("Yangi PIN kamida 4 ta raqam bo'lsin!");
-    }
-
-    localStorage.setItem(STORAGE_KEY_PIN, newPin);
+  try {
+    if (!currentUser) return;
+    const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'config');
+    await setDoc(settingsDocRef, { pin: newPin }, { merge: true });
+    storedPin = newPin;
     closeModal("pinModal");
     showToast("PIN kod muvaffaqiyatli yangilandi!");
+  } catch (err) {
+    showToast("PIN kodni saqlashda xatolik yuz berdi");
   }
+};
 
-  function syncAdminUI() {
-    const authBtn = document.getElementById("authBtn");
-    const adminPanel = document.getElementById("adminPanel");
+function openStudentModal(id = null) {
+  activeStudentPhoto = "";
+  document.getElementById("inputStudentPhoto").value = "";
+  document.getElementById("photoPreviewContainer").classList.add("hidden");
 
-    if (isAdmin) {
-      authBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket text-xs"></i> <span>Chiqish</span>';
-      authBtn.className = "px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-rose-600 hover:bg-rose-700 text-white";
-      adminPanel.classList.remove("hidden");
-      adminPanel.classList.add("flex");
-    } else {
-      authBtn.innerHTML = '<i class="fa-solid fa-lock text-xs"></i> <span>Ustoz Kirishi</span>';
-      authBtn.className = "px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition active:scale-95 flex items-center gap-1.5 bg-brand-900 hover:bg-brand-800 text-white";
-      adminPanel.classList.add("hidden");
-      adminPanel.classList.remove("flex");
+  if (id) {
+    const student = studentsList.find(s => s.id === id);
+    if (!student) return;
+    document.getElementById("studentModalTitle").innerText = student.name + " — Tahrirlash";
+    document.getElementById("editStudentId").value = student.id;
+    document.getElementById("inputStudentName").value = student.name || "";
+    document.getElementById("inputStudentTarget").value = student.target || "";
+    document.getElementById("inputStudentUnit").value = student.unit || "bet";
+    document.getElementById("inputStudentRevision").value = student.revision || "";
+
+    if (student.photo) {
+      activeStudentPhoto = student.photo;
+      document.getElementById("photoPreviewImg").src = student.photo;
+      document.getElementById("photoPreviewContainer").classList.remove("hidden");
     }
-    renderApp();
+  } else {
+    document.getElementById("studentModalTitle").innerText = "Yangi Shogird Qo'shish";
+    document.getElementById("editStudentId").value = "";
+    document.getElementById("inputStudentName").value = "";
+    document.getElementById("inputStudentTarget").value = "";
+    document.getElementById("inputStudentUnit").value = "bet";
+    document.getElementById("inputStudentRevision").value = "";
   }
+  openModal("studentModal");
+}
 
-  /* Shogird Rasm Yuklash */
-  function handlePhotoUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+document.getElementById('addStudentBtn').onclick = () => openStudentModal();
 
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      const img = new Image();
-      img.onload = function() {
-        const canvas = document.createElement("canvas");
-        const MAX_SIZE = 140;
-        let width = img.width;
-        let height = img.height;
+document.getElementById('submitStudentBtn').onclick = async () => {
+  const id = document.getElementById("editStudentId").value;
+  const name = document.getElementById("inputStudentName").value.trim();
+  const target = parseFloat(document.getElementById("inputStudentTarget").value);
+  const unit = document.getElementById("inputStudentUnit").value.trim() || "bet";
+  const revision = document.getElementById("inputStudentRevision").value.trim();
 
-        if (width > height) {
-          if (width > MAX_SIZE) {
-            height *= MAX_SIZE / width;
-            width = MAX_SIZE;
-          }
-        } else {
-          if (height > MAX_SIZE) {
-            width *= MAX_SIZE / height;
-            height = MAX_SIZE;
-          }
-        }
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
+  if (!name) return showToast("Shogird ismini kiriting!");
+  if (isNaN(target) || target <= 0) return showToast("Jami reja sonini to'g'ri kiriting!");
+  if (!currentUser) return;
 
-        activeStudentPhoto = canvas.toDataURL("image/jpeg", 0.85);
-        document.getElementById("photoPreviewImg").src = activeStudentPhoto;
-        document.getElementById("photoPreviewContainer").classList.remove("hidden");
-      };
-      img.src = evt.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function clearPhoto() {
-    activeStudentPhoto = "";
-    document.getElementById("inputStudentPhoto").value = "";
-    document.getElementById("photoPreviewContainer").classList.add("hidden");
-  }
-
-  /* Shogird Modalini Ochish (Yangi yoki Tahrirlash) */
-  function openStudentModal(id = null) {
-    clearPhoto();
+  try {
     if (id) {
-      const student = getStudents().find(s => s.id === id);
-      if (!student) return;
-      document.getElementById("studentModalTitle").innerText = student.name + " — Tahrirlash";
-      document.getElementById("editStudentId").value = student.id;
-      document.getElementById("inputStudentName").value = student.name;
-      document.getElementById("inputStudentTarget").value = student.target;
-      document.getElementById("inputStudentUnit").value = student.unit || "bet";
-      document.getElementById("inputStudentRevision").value = student.revision || "";
-
-      if (student.photo) {
-        activeStudentPhoto = student.photo;
-        document.getElementById("photoPreviewImg").src = student.photo;
-        document.getElementById("photoPreviewContainer").classList.remove("hidden");
-      }
-    } else {
-      document.getElementById("studentModalTitle").innerText = "Yangi Shogird Qo'shish";
-      document.getElementById("editStudentId").value = "";
-      document.getElementById("inputStudentName").value = "";
-      document.getElementById("inputStudentTarget").value = "";
-      document.getElementById("inputStudentUnit").value = "bet";
-      document.getElementById("inputStudentRevision").value = "";
-    }
-    openModal("studentModal");
-  }
-
-  /* Shogird Ma'lumotlarini Saqlash */
-  function submitStudentForm() {
-    const id = document.getElementById("editStudentId").value;
-    const name = document.getElementById("inputStudentName").value.trim();
-    const target = parseFloat(document.getElementById("inputStudentTarget").value);
-    const unit = document.getElementById("inputStudentUnit").value.trim() || "bet";
-    const revision = document.getElementById("inputStudentRevision").value.trim();
-
-    if (!name) {
-      return showToast("Shogird ismini kiriting!");
-    }
-    if (isNaN(target) || target <= 0) {
-      return showToast("Jami reja sonini to'g'ri kiriting!");
-    }
-
-    let list = getStudents();
-    if (id) {
-      list = list.map(s => {
-        if (s.id === id) {
-          return {
-            ...s,
-            name,
-            target,
-            unit,
-            revision,
-            photo: activeStudentPhoto || s.photo
-          };
-        }
-        return s;
-      });
+      const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', id);
+      const existing = studentsList.find(s => s.id === id);
+      await setDoc(studentDocRef, {
+        name,
+        target,
+        unit,
+        revision,
+        photo: activeStudentPhoto || existing?.photo || ""
+      }, { merge: true });
       showToast("Ma'lumot yangilandi!");
     } else {
-      list.push({
-        id: "std_" + Date.now(),
+      const newId = 'std_' + Date.now();
+      const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', newId);
+      await setDoc(studentDocRef, {
         name,
         target,
         completed: 0,
         unit,
         revision,
         photo: activeStudentPhoto,
-        history: []
+        history: [],
+        createdAt: Date.now()
       });
       showToast("Yangi shogird qo'shildi!");
     }
-
-    saveStudents(list);
     closeModal("studentModal");
+  } catch (err) {
+    showToast("Saqlashda xatolik yuz berdi");
   }
+};
 
-  /* Shogirdni O'chirish (Tasdiqlash oynasi bilan) */
-  function askDeleteStudent(id, name) {
-    document.getElementById("confirmMessage").innerText = `"${name}" shogirdi va barcha dars hisoboti butunlay o'chiriladi.`;
-    const btn = document.getElementById("confirmBtn");
-    btn.onclick = function() {
-      const updated = getStudents().filter(s => s.id !== id);
-      saveStudents(updated);
-      closeModal("confirmModal");
-      showToast("O'chirildi!");
-    };
-    openModal("confirmModal");
+function openDailyModal(id) {
+  const student = studentsList.find(s => s.id === id);
+  if (!student) return;
+
+  document.getElementById("dailyStudentId").value = student.id;
+  document.getElementById("dailyModalTitle").innerText = student.name + " — Dars Kiritish";
+  document.getElementById("inputDailyAdded").value = "";
+  document.getElementById("inputDailyRev").value = "";
+  document.getElementById("inputDailyNote").value = "";
+
+  openModal("dailyModal");
+}
+
+document.getElementById('submitDailyBtn').onclick = async () => {
+  const id = document.getElementById("dailyStudentId").value;
+  const added = parseFloat(document.getElementById("inputDailyAdded").value) || 0;
+  const rev = document.getElementById("inputDailyRev").value.trim();
+  const note = document.getElementById("inputDailyNote").value.trim();
+
+  if (added === 0 && !rev) {
+    return showToast("Yangi dars miqdori yoki takrorlangan qismni kiriting!");
   }
+  if (!currentUser) return;
 
-  /* Kunlik Dars & Takror Kiritish Oynasi */
-  function openDailyModal(id) {
-    const student = getStudents().find(s => s.id === id);
-    if (!student) return;
+  const student = studentsList.find(s => s.id === id);
+  if (!student) return;
 
-    document.getElementById("dailyStudentId").value = student.id;
-    document.getElementById("dailyModalTitle").innerText = student.name + " — Dars Kiritish";
-    document.getElementById("inputDailyAdded").value = "";
-    document.getElementById("inputDailyRev").value = "";
-    document.getElementById("inputDailyNote").value = "";
+  const newCompleted = Number(((student.completed || 0) + added).toFixed(2));
+  const now = new Date();
+  const dateString = now.toLocaleDateString("uz-UZ") + ", " + now.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
 
-    openModal("dailyModal");
-  }
+  const history = student.history ? [...student.history] : [];
+  history.unshift({
+    date: dateString,
+    added: added,
+    rev: rev || "-",
+    note: note || "-",
+    totalAfter: newCompleted
+  });
 
-  function submitDailyProgress() {
-    const id = document.getElementById("dailyStudentId").value;
-    const added = parseFloat(document.getElementById("inputDailyAdded").value) || 0;
-    const rev = document.getElementById("inputDailyRev").value.trim();
-    const note = document.getElementById("inputDailyNote").value.trim();
+  try {
+    const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', id);
+    await setDoc(studentDocRef, {
+      completed: newCompleted,
+      revision: rev || student.revision || "",
+      history: history
+    }, { merge: true });
 
-    if (added === 0 && !rev) {
-      return showToast("Yangi dars miqdori yoki takrorlangan qismni kiriting!");
-    }
-
-    let list = getStudents();
-    list = list.map(student => {
-      if (student.id === id) {
-        const newCompleted = Number((student.completed + added).toFixed(2));
-        const now = new Date();
-        const dateString = now.toLocaleDateString("uz-UZ") + ", " + now.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
-
-        const history = student.history || [];
-        history.unshift({
-          date: dateString,
-          added: added,
-          rev: rev || "-",
-          note: note || "-",
-          totalAfter: newCompleted
-        });
-
-        return {
-          ...student,
-          completed: newCompleted,
-          revision: rev || student.revision,
-          history: history
-        };
-      }
-      return student;
-    });
-
-    saveStudents(list);
     closeModal("dailyModal");
     showToast("Vazifa hisoboti saqlandi!");
+  } catch (err) {
+    showToast("Hisobotni saqlashda xatolik");
+  }
+};
+
+function showHistory(id) {
+  const student = studentsList.find(s => s.id === id);
+  if (!student) return;
+
+  document.getElementById("historyModalTitle").innerText = student.name + " — Tarix";
+  const body = document.getElementById("historyModalBody");
+
+  if (!student.history || student.history.length === 0) {
+    body.innerHTML = `
+      <div class="text-center py-8 text-slate-400">
+        <i class="fa-solid fa-book-open text-3xl mb-2"></i>
+        <p class="text-xs font-semibold">Hozircha darslar yozilmagan.</p>
+      </div>
+    `;
+  } else {
+    body.innerHTML = student.history.map(item => `
+      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-1">
+        <div class="flex items-center justify-between font-bold text-slate-700">
+          <span class="text-slate-500">${item.date}</span>
+          <span class="text-emerald-700 font-extrabold bg-emerald-100 px-2.5 py-0.5 rounded-lg">+${item.added} ${student.unit || 'bet'}</span>
+        </div>
+        <div class="text-slate-600"><strong class="text-amber-800">Takror:</strong> ${item.rev}</div>
+        ${item.note && item.note !== '-' ? `<div class="text-slate-500 italic">Izoh: ${item.note}</div>` : ''}
+      </div>
+    `).join("");
   }
 
-  /* Shogird Tarixini Ko'rish */
-  function showHistory(id) {
-    const student = getStudents().find(s => s.id === id);
-    if (!student) return;
+  openModal("historyModal");
+}
 
-    document.getElementById("historyModalTitle").innerText = student.name + " — Tarix";
-    const body = document.getElementById("historyModalBody");
+function askDeleteStudent(id, name) {
+  pendingDeleteId = id;
+  document.getElementById("confirmMessage").innerText = `"${name}" shogirdi va barcha dars hisoboti butunlay o'chiriladi.`;
+  openModal("confirmModal");
+}
 
-    if (!student.history || student.history.length === 0) {
-      body.innerHTML = `
-        <div class="text-center py-8 text-slate-400">
-          <i class="fa-solid fa-book-open text-3xl mb-2"></i>
-          <p class="text-xs font-semibold">Hozircha darslar yozilmagan.</p>
-        </div>
-      `;
+document.getElementById('confirmDeleteBtn').onclick = async () => {
+  if (!pendingDeleteId || !currentUser) return;
+  try {
+    const studentDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', pendingDeleteId);
+    await deleteDoc(studentDocRef);
+    closeModal("confirmModal");
+    pendingDeleteId = null;
+    showToast("O'chirildi!");
+  } catch (err) {
+    showToast("O'chirishda xatolik yuz berdi");
+  }
+};
+
+document.getElementById('searchInput').addEventListener('input', () => renderApp());
+
+window.addEventListener('DOMContentLoaded', async () => {
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  try {
+    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+      const cred = await signInWithCustomToken(auth, __initial_auth_token);
+      currentUser = cred.user;
     } else {
-      body.innerHTML = student.history.map(item => `
-        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1">
-          <div class="flex items-center justify-between font-bold text-slate-700">
-            <span class="text-slate-500">${item.date}</span>
-            <span class="text-emerald-700 font-extrabold bg-emerald-100 px-2 py-0.5 rounded-md">+${item.added} ${student.unit}</span>
-          </div>
-          <div class="text-slate-600"><strong class="text-amber-800">Takror:</strong> ${item.rev}</div>
-          ${item.note && item.note !== '-' ? `<div class="text-slate-500 italic">Izoh: ${item.note}</div>` : ''}
-        </div>
-      `).join("");
+      const cred = await signInAnonymously(auth);
+      currentUser = cred.user;
     }
-
-    openModal("historyModal");
+    setupCloudListeners();
+  } catch (authError) {
+    currentUser = { uid: "guest-user" };
+    setupCloudListeners();
   }
-
-  /* Asosiy Kartalarni Ekranga Chizish */
-  function renderApp() {
-    const container = document.getElementById("studentsContainer");
-    const query = document.getElementById("searchInput").value.toLowerCase().trim();
-    const daysLeft = updateCountdown();
-    let students = getStudents();
-
-    if (query) {
-      students = students.filter(s => s.name.toLowerCase().includes(query));
-    }
-
-    if (students.length === 0) {
-      container.innerHTML = `
-        <div class="bg-white rounded-2xl p-8 text-center text-slate-400 border border-slate-200 shadow-sm">
-          <i class="fa-solid fa-user-slash text-3xl mb-2 text-slate-300"></i>
-          <p class="font-bold text-sm">Hech qanday shogird topilmadi.</p>
-        </div>
-      `;
-      return;
-    }
-
-    container.innerHTML = students.map(student => {
-      const remaining = Math.max(0, student.target - student.completed);
-      const dailyNorm = (remaining / daysLeft).toFixed(2);
-      const percent = Math.min(100, (student.completed / student.target) * 100).toFixed(1);
-
-      // Avatar rasmi yoki bosh harf
-      const avatarHtml = student.photo 
-        ? `<img src="${student.photo}" class="w-12 h-12 rounded-full object-cover border-2 border-brand-500 shadow-sm shrink-0">` 
-        : `<div class="w-12 h-12 rounded-full bg-brand-50 text-brand-800 border-2 border-brand-500 font-extrabold text-lg flex items-center justify-center shrink-0">${student.name.charAt(0).toUpperCase()}</div>`;
-
-      return `
-        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
-          <!-- Yuqori qism: Profil va boshqaruv -->
-          <div class="flex items-center justify-between gap-2 flex-wrap">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="showHistory('${student.id}')">
-              ${avatarHtml}
-              <div>
-                <h3 class="font-extrabold text-slate-800 text-base flex items-center gap-1.5">
-                  ${student.name}
-                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Faol</span>
-                </h3>
-                <p class="text-xs font-semibold text-brand-600 hover:underline flex items-center gap-1">
-                  <i class="fa-solid fa-chart-line text-[10px]"></i> Tarix & Hisobotni ko'rish
-                </p>
-              </div>
-            </div>
-
-            ${isAdmin ? `
-              <div class="flex items-center gap-1.5">
-                <button onclick="openStudentModal('${student.id}')" class="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-lg transition" title="Tahrirlash">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button onclick="askDeleteStudent('${student.id}', '${student.name}')" class="px-2.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs rounded-lg transition" title="O'chirish">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
-            ` : ''}
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="mt-3.5 mb-2">
-            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/60">
-              <div class="bg-gradient-to-r from-brand-600 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: ${percent}%;"></div>
-            </div>
-          </div>
-
-          <!-- Statistika Grid -->
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 mt-2 text-center">
-            <div>
-              <span class="block text-[10px] font-bold text-slate-400 uppercase">Jami Reja</span>
-              <span class="block text-xs sm:text-sm font-extrabold text-slate-800">${student.target} ${student.unit}</span>
-            </div>
-            <div>
-              <span class="block text-[10px] font-bold text-slate-400 uppercase">O'qildi</span>
-              <span class="block text-xs sm:text-sm font-extrabold text-brand-600">${student.completed} ${student.unit}</span>
-            </div>
-            <div>
-              <span class="block text-[10px] font-bold text-slate-400 uppercase">Qoldi</span>
-              <span class="block text-xs sm:text-sm font-extrabold text-slate-700">${remaining.toFixed(1)} ${student.unit}</span>
-            </div>
-            <div>
-              <span class="block text-[10px] font-bold text-slate-400 uppercase">Kunlik Me'yor</span>
-              <span class="block text-xs sm:text-sm font-extrabold text-amber-600">${dailyNorm} / kun</span>
-            </div>
-            <div class="col-span-2 sm:col-span-1">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase">Bajarildi</span>
-              <span class="block text-xs sm:text-sm font-extrabold text-emerald-600">${percent}%</span>
-            </div>
-          </div>
-
-          <!-- Takrorlash statusi -->
-          ${student.revision ? `
-            <div class="mt-2.5 bg-amber-50/80 border border-amber-200/70 rounded-xl p-2.5 flex items-start gap-2 text-xs text-amber-900">
-              <i class="fa-solid fa-arrows-rotate text-amber-600 mt-0.5"></i>
-              <div>
-                <strong class="font-bold">Takror:</strong> ${student.revision}
-              </div>
-            </div>
-          ` : ''}
-
-          <!-- Pastki harakat tugmalari -->
-          <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
-            <button onclick="showHistory('${student.id}')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-lg transition flex items-center gap-1.5">
-              <i class="fa-solid fa-list-check"></i> Hisobot
-            </button>
-
-            ${isAdmin ? `
-              <button onclick="openDailyModal('${student.id}')" class="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg shadow-sm transition active:scale-95 flex items-center gap-1.5">
-                <i class="fa-solid fa-pen"></i> Dars & Takror kiritish
-              </button>
-            ` : ''}
-          </div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  /* Dasturni ishga tushirish */
-  window.onload = function() {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-    syncAdminUI();
-  };
+});
 </script>
 </body>
 </html>
